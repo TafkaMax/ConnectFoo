@@ -18,6 +18,7 @@ import {
   DebugInstructions,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+<<<<<<< HEAD
 import { GameBoard } from './src/components/GameBoard';
 import { GameStatistics } from './src/components/GameStatistics';
 import { StackParams } from './src/types/navigation';
@@ -32,6 +33,19 @@ const App = () => {
         <Stack.Screen name="Home" component={HomeScreen} />
       </Stack.Navigator>
     </NavigationContainer>
+=======
+import { GameBoard } from './components/GameBoard';
+import { GameStatistics } from './components/GameStatistics';
+
+declare const global: {HermesInternal: null | {}};
+
+const App = () => {
+  return (
+    <View style={styles.root}>
+        <GameStatistics/>
+        <GameBoard/>
+    </View>
+>>>>>>> 751521786aa8eadea565d0650e95eabcd57e081b
   );
 };
 
