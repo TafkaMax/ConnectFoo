@@ -24,6 +24,7 @@ export const HomeScreen = () => {
             nextMoveBy: prevState.nextMoveBy === 'R' ? 'B' : 'R'
         }));
     }
+
     const initalstate: IAppContext = {
         ...initialContext,
         startNewGame: startNewGame,
@@ -37,8 +38,11 @@ export const HomeScreen = () => {
                 ...styles.root,
                 flexDirection: orientationStyle()
             }}>
-                <GameStatistics/>
-                <GameBoard/>
+                <GameStatistics
+                />
+                <GameBoard
+                isPortrait = {isPortrait}
+                />
             </View>
         </AppContextProvider>
     );

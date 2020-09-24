@@ -2,10 +2,16 @@ import { StyleSheet, Text, View } from "react-native";
 import React from 'react';
 import { GameButton } from "./GameButton";
 
-export const GameBoard = () => {
+type Props = {
+    isPortrait: () => boolean
+}
+
+export const GameBoard = ({isPortrait}: Props) => {
     return (
-    <View style={styles.size_h50}>
-        {[...Array(42)].map((x, i) => <GameButton/>)}
+    <View style={[styles.size_h50, isPortrait() ? styles.vertical : styles.horizontal]}>
+        {[...Array(42)].map((x, i) => <GameButton
+        isPortrait = {isPortrait}
+        />)}
     </View>
     );
 }
@@ -14,12 +20,18 @@ export const GameBoard = () => {
 const styles = StyleSheet.create({
     size_h50: {
         flex: 1,
-        width: '100%',
-        height: '50%',
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#FF0000',
         padding: '2%',
         flexWrap: 'wrap'
+    },
+    vertical: {
+        width: '100%',
+        height: '50%',
+    },
+    horizontal: {
+        width: '50%',
+        height: '100%',
     }
 });
