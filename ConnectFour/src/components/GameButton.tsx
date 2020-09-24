@@ -1,5 +1,5 @@
 import { View, Button, StyleSheet } from "react-native";
-import React, { cloneElement } from 'react';
+import React from 'react';
 
 type Props = {
     isPortrait : () => boolean

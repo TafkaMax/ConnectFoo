@@ -8,7 +8,7 @@ type Props = {
 
 export const GameBoard = ({isPortrait}: Props) => {
     return (
-    <View style={[styles.size_h50, isPortrait() ? styles.vertical : styles.horizontal]}>
+    <View style={[styles.board_page, isPortrait() ? styles.vertical : styles.horizontal]}>
         {[...Array(42)].map((x, i) => <GameButton
         isPortrait = {isPortrait}
         />)}
@@ -18,7 +18,7 @@ export const GameBoard = ({isPortrait}: Props) => {
 
 
 const styles = StyleSheet.create({
-    size_h50: {
+    board_page: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',

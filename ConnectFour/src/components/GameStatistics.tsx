@@ -4,7 +4,7 @@ import React from 'react';
 
 export const GameStatistics = () => {
     return (
-    <View style={styles.size_h50}>
+    <View style={styles.stat_page}>
         <Text>Test2</Text>
         <Text>Test3</Text>
         <Text>Test4</Text>
@@ -14,7 +14,7 @@ export const GameStatistics = () => {
 
 
 const styles = StyleSheet.create({
-    size_h50: {
+    stat_page: {
         flex: 1,
         width: '100%',
         height: '100%',
