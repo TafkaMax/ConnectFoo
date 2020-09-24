@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#FF0000',
-        padding: '2%',
+        padding: '0.5%',
         flexWrap: 'wrap'
     },
     vertical: {

@@ -17,23 +17,19 @@ const styles = StyleSheet.create({
     cell: {
         backgroundColor: '#00FF00',
         flex: 1,
-        borderTopWidth: 1,
-        borderLeftWidth: 1,
-        borderRightWidth: 1,
-        borderBottomWidth: 1,
         justifyContent: 'center',
         alignItems: 'center'
     },
     horizontal: {
         minWidth: '8.1%',
-        minHeight: '14.28%',
-        maxWidth: '16.6%',
-        maxHeight: '14.28%',
+        minHeight: '14.2857142857%',
+        maxWidth: '14.2857142857%',
+        maxHeight: '16.6%',
     },
     vertical: {
-        minWidth: '14.28%',
+        minWidth: '14.2857142857%',
         minHeight: '8.1%',
-        maxWidth: '14.28%',
+        maxWidth: '14.2857142857%',
         maxHeight: '16.6%',
     }
 })
