@@ -1,13 +1,18 @@
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, Button } from "react-native";
 import React from 'react';
+import { IAppContext } from "../context/AppContext";
 
 
-export const GameStatistics = () => {
+type Props = {
+    state : IAppContext;
+}
+
+export const GameStatistics = ({state} : Props) => {
     return (
     <View style={styles.stat_page}>
-        <Text>Test2</Text>
-        <Text>Test3</Text>
-        <Text>Test4</Text>
+        <Text>Number of moves : {state.moves}</Text>
+        <Text>Next move by player: {state.nextMoveBy}</Text>
+        <Button title="Reset game" onPress={() => {state.startNewGame('B')}}/>
     </View>
     );
 };

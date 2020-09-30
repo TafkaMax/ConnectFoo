@@ -6,6 +6,7 @@ import { StackParams } from '../types/navigation';
 import { AppContextProvider, PlayerType, IAppContext, initialContext } from '../context/AppContext';
 import { GameStatistics } from '../components/GameStatistics';
 import { GameBoard } from '../components/GameBoard';
+import { useLinkProps } from '@react-navigation/native';
 
 
 type Props = StackScreenProps<StackParams, 'Home'>;
@@ -14,6 +15,7 @@ export const HomeScreen = () => {
     const window = useWindowDimensions();
     const isPortrait = () => window.height > window.width;
     const orientationStyle = () => (isPortrait() ? 'column' : 'row');
+
     const startNewGame = (startingPlayer: PlayerType) => {
         setState({...state, moves: 0, nextMoveBy: startingPlayer});
     };
@@ -25,11 +27,14 @@ export const HomeScreen = () => {
         }));
     }
 
+
     const initalstate: IAppContext = {
         ...initialContext,
         startNewGame: startNewGame,
-        makeMove: makeMove
-    }
+        makeMove: makeMove,
+        moves: initialContext.moves,
+        boardState: initialContext.boardState
+    } 
 
     const [state, setState] = useState(initalstate);
     return (
@@ -39,9 +44,12 @@ export const HomeScreen = () => {
                 flexDirection: orientationStyle()
             }}>
                 <GameStatistics
+                state = {state}
+                resetstate = {initalstate}
                 />
                 <GameBoard
                 isPortrait = {isPortrait}
+                state = {state}
                 />
             </View>
         </AppContextProvider>
