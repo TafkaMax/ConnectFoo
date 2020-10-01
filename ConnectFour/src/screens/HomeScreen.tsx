@@ -6,7 +6,8 @@ import { StackParams } from '../types/navigation';
 import { AppContextProvider, PlayerType, IAppContext, initialContext, createNewArray } from '../context/AppContext';
 import { GameStatistics } from '../components/GameStatistics';
 import { GameBoard } from '../components/GameBoard';
-import { useLinkProps } from '@react-navigation/native';
+import { didWinMain } from '../helpers/helpermethods';
+import { WinScreen } from '../components/WinScreen';
 
 
 type Props = StackScreenProps<StackParams, 'Home'>;
@@ -22,7 +23,8 @@ export const HomeScreen = () => {
             ...prevState,
             moves: 0,
             nextMoveBy: startingPlayer,
-            boardState: createNewArray()
+            boardState: createNewArray(),
+            isWon: false
         }));
         console.log(state.boardState);
     };
@@ -34,22 +36,24 @@ export const HomeScreen = () => {
             nextMoveBy: prevState.nextMoveBy === 'R' ? 'B' : 'R',
             boardState: setMoveToCell(prevState.boardState, currentPlayer, y, x),
         }));
-        console.log(state.boardState);
+        
+        setState((prevState) => ({
+            ...prevState,
+            moves: prevState.moves,
+            nextMoveBy: prevState.nextMoveBy,
+            boardState: prevState.boardState,
+            isWon : didWinMain(state.boardState, currentPlayer, y, x)
+        }))
     }
 
-    
-
     const setMoveToCell = (prevBoardState: PlayerType[][], currentPlayer: PlayerType, y: number, x: number) => {
-        for (let i = 0; i < prevBoardState.length; i++) {
-            for (let j = 0; j < prevBoardState[i].length; j++) {
-                if(i === y && j === x) {
-                    prevBoardState[y][x] = currentPlayer;
-                }
-            }
+        if(validMove(prevBoardState, currentPlayer, y, x)) {
+            let i = checkForSpotInColumn(prevBoardState, currentPlayer, y, x);
+            if (i !== undefined) {
+                prevBoardState[i][x] = currentPlayer;
+            } 
         }
-        console.log(prevBoardState);
         return prevBoardState;
-        
     }
 
     const initalstate: IAppContext = {
@@ -58,6 +62,7 @@ export const HomeScreen = () => {
         makeMove: makeMove,
         moves: initialContext.moves,
         boardState: initialContext.boardState,
+        isWon: false
     } 
 
     const [state, setState] = useState(initalstate);
@@ -69,9 +74,13 @@ export const HomeScreen = () => {
             }}>
                 <GameStatistics
                 />
-                <GameBoard
-                isPortrait = {isPortrait}
-                />
+                    
+                { state.isWon && <WinScreen/>}
+                { !state.isWon && <GameBoard
+                    isPortrait = {isPortrait}
+                    />}            
+                {console.log(state.isWon)}
+                    
             </View>
         </AppContextProvider>
     );
@@ -85,4 +94,20 @@ const styles = StyleSheet.create({
     }
   });
   
+
+function checkForSpotInColumn(prevBoardState: PlayerType[][], currentPlayer: string, y: number, x: number) {
+    for (let i = prevBoardState.length - 1; i >= 0; i--) {
+        if(prevBoardState[i][x] == '') {
+            return i
+        }
+    }
+}
+
+function validMove(prevBoardState: PlayerType[][],currentPlayer: PlayerType, y: number, x: number) {
+    for (let i = 0; i < prevBoardState.length; i++) {
+        if(prevBoardState[i][x] == '') {
+            return true;
+        }
+    }
+}
   

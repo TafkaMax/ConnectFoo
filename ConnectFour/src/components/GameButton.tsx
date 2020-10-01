@@ -19,7 +19,6 @@ const getStyle = (boardState : PlayerType[][], y: number, x: number) => {
     } else {
         return styles.empty;
     }
-    // return playerType === "R" ? styles.redplayer : playerType === "B" ? styles.blueplayer : styles.empty
 }
 
 const getCurrentPlayerType = (state : IAppContext) => {

@@ -9,7 +9,10 @@ export interface IAppContext {
     startNewGame: (startingPlayer: PlayerType) => void;
     makeMove: (CurrentPlayer : PlayerType, y: number, x: number) => void;
     boardState: PlayerType[][];
+    isWon: boolean;
 }
+
+//(boardState: PlayerType[][], CurrentPlayer : PlayerType, col: number, row: number) => void;
 
 const emptyFunction = () => {};
 
@@ -30,6 +33,7 @@ export const initialContext: IAppContext = {
     startNewGame: emptyFunction,
     makeMove: emptyFunction,
     boardState: createNewArray(),
+    isWon: false
 };
 
 export const AppContext = React.createContext<IAppContext>(initialContext);
