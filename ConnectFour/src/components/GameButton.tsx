@@ -1,6 +1,6 @@
 import { View, Button, StyleSheet } from "react-native";
 import React, { useEffect } from 'react';
-import { PlayerType } from "../context/AppContext";
+import { PlayerType, AppContextConsumer, IAppContext } from "../context/AppContext";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 type Props = {
@@ -8,19 +8,37 @@ type Props = {
     playerType: PlayerType
     y: number,
     x: number,
-    makeMove: () => void
 }
 
 
-export const GameButton = ({isPortrait, playerType, x, y, makeMove} : Props) => {
+const getStyle = (boardState : PlayerType[][], y: number, x: number) => {
+    if(boardState[y][x] === 'R' ) {
+        return styles.redplayer;
+    } else if (boardState[y][x] === 'B') {
+        return styles.blueplayer;
+    } else {
+        return styles.empty;
+    }
+    // return playerType === "R" ? styles.redplayer : playerType === "B" ? styles.blueplayer : styles.empty
+}
+
+const getCurrentPlayerType = (state : IAppContext) => {
+    return state.nextMoveBy === "R" ? "R" : state.nextMoveBy === "B" ? "B" : "";
+}
+
+export const GameButton = ({isPortrait, playerType, y, x} : Props) => {
 
     return (
-        <View style={[styles.cell, isPortrait() ? styles.vertical : styles.horizontal]}>
-            <TouchableOpacity onPress={() => {makeMove()}} style={[styles.round, playerType === "R" ? styles.redplayer : playerType === "B" ? styles.blueplayer : styles.empty]}>
-                {playerType}    
-            </TouchableOpacity> 
-        </View>
-
+        <AppContextConsumer>
+            { value => 
+                <View style={[styles.cell, isPortrait() ? styles.vertical : styles.horizontal]}>
+                    <TouchableOpacity 
+                        onPress={() => {value.makeMove(getCurrentPlayerType(value), y, x)}} 
+                        style={[styles.round, getStyle(value.boardState, y, x)]}>
+                    </TouchableOpacity> 
+                </View>
+            }
+        </AppContextConsumer>
     );
 }
 
@@ -32,13 +50,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     horizontal: {
-        minWidth: '8.1%',
-        minHeight: '14.2857142857%',
-        maxWidth: '14.2857142857%',
+        minWidth: '7.1%',
+        minHeight: '14%',
+        maxWidth: '14%',
         maxHeight: '16.6%',
     },
     vertical: {
-        minWidth: '14.2857142857%',
+        minWidth: '14%',
         minHeight: '8.1%',
         maxWidth: '14.2857142857%',
         maxHeight: '16.6%',

@@ -1,19 +1,23 @@
 import { StyleSheet, View, Text, Button } from "react-native";
 import React from 'react';
-import { IAppContext } from "../context/AppContext";
+import { IAppContext, AppContextConsumer } from "../context/AppContext";
 
 
-type Props = {
-    state : IAppContext;
-}
+// type Props = {
+//     state : IAppContext;
+// }
 
-export const GameStatistics = ({state} : Props) => {
+export const GameStatistics = () => {
     return (
-    <View style={styles.stat_page}>
-        <Text>Number of moves : {state.moves}</Text>
-        <Text>Next move by player: {state.nextMoveBy}</Text>
-        <Button title="Reset game" onPress={() => {state.startNewGame('B')}}/>
-    </View>
+    <AppContextConsumer>
+        { value => 
+            <View style={styles.stat_page}>
+                <Text>Number of moves : {value.moves}</Text>
+                <Text>Next move by player: {value.nextMoveBy}</Text>
+                <Button title="Reset game" onPress={() => {value.startNewGame('B')}}/>
+            </View>
+        }
+    </AppContextConsumer>
     );
 };
 
