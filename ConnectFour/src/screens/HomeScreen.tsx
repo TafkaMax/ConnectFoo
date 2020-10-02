@@ -6,8 +6,9 @@ import { StackParams } from '../types/navigation';
 import { AppContextProvider, PlayerType, IAppContext, initialContext, createNewArray } from '../context/AppContext';
 import { GameStatistics } from '../components/GameStatistics';
 import { GameBoard } from '../components/GameBoard';
-import { didWinMain } from '../helpers/helpermethods';
-import { WinScreen } from '../components/WinScreen';
+import { checkForSpotInColumn, didWinMain, validMove } from '../helpers/helpermethods';
+
+
 
 
 type Props = StackScreenProps<StackParams, 'Home'>;
@@ -27,6 +28,7 @@ export const HomeScreen = () => {
             isWon: false
         }));
         console.log(state.boardState);
+        console.log('----------------------------------------------------');
     };
 
     const makeMove = (currentPlayer: PlayerType, y: number, x: number) => {
@@ -42,7 +44,7 @@ export const HomeScreen = () => {
             moves: prevState.moves,
             nextMoveBy: prevState.nextMoveBy,
             boardState: prevState.boardState,
-            isWon : didWinMain(state.boardState, currentPlayer, y, x)
+            isWon : didWinMain(prevState.boardState, currentPlayer, y, x)
         }))
     }
 
@@ -75,12 +77,12 @@ export const HomeScreen = () => {
                 <GameStatistics
                 />
                     
-                { state.isWon && <WinScreen/>}
-                { !state.isWon && <GameBoard
+                
+                <GameBoard
                     isPortrait = {isPortrait}
-                    />}            
+                    />
                 {console.log(state.isWon)}
-                    
+                {console.log('----------------------------------------------------')}
             </View>
         </AppContextProvider>
     );
@@ -95,19 +97,5 @@ const styles = StyleSheet.create({
   });
   
 
-function checkForSpotInColumn(prevBoardState: PlayerType[][], currentPlayer: string, y: number, x: number) {
-    for (let i = prevBoardState.length - 1; i >= 0; i--) {
-        if(prevBoardState[i][x] == '') {
-            return i
-        }
-    }
-}
 
-function validMove(prevBoardState: PlayerType[][],currentPlayer: PlayerType, y: number, x: number) {
-    for (let i = 0; i < prevBoardState.length; i++) {
-        if(prevBoardState[i][x] == '') {
-            return true;
-        }
-    }
-}
   

@@ -2,6 +2,7 @@ import { View, Button, StyleSheet } from "react-native";
 import React, { useEffect } from 'react';
 import { PlayerType, AppContextConsumer, IAppContext } from "../context/AppContext";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { checkDisabled } from "../helpers/helpermethods";
 
 type Props = {
     isPortrait : () => boolean
@@ -26,14 +27,24 @@ const getCurrentPlayerType = (state : IAppContext) => {
 }
 
 export const GameButton = ({isPortrait, playerType, y, x} : Props) => {
-
+    // const checkDisabled = (boardState: PlayerType[][]) => 
+    // {
+    //     for (let i = board; i < boardState.length; i++) {
+    //         for (let j = 0; j < boardState[0].length; j++) {
+    //             if ()
+    //         }
+            
+    //     }
+    // }
     return (
         <AppContextConsumer>
             { value => 
                 <View style={[styles.cell, isPortrait() ? styles.vertical : styles.horizontal]}>
                     <TouchableOpacity 
                         onPress={() => {value.makeMove(getCurrentPlayerType(value), y, x)}} 
-                        style={[styles.round, getStyle(value.boardState, y, x)]}>
+                        style={[styles.round, getStyle(value.boardState, y, x), value.isWon === true ? styles.obscured : null]}
+                        disabled = {checkDisabled(value.boardState, y, x) || value.isWon}
+                        >
                     </TouchableOpacity> 
                 </View>
             }
@@ -43,7 +54,6 @@ export const GameButton = ({isPortrait, playerType, y, x} : Props) => {
 
 const styles = StyleSheet.create({
     cell: {
-        backgroundColor: '#00FF00',
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
@@ -79,5 +89,8 @@ const styles = StyleSheet.create({
     },
     empty: {
         backgroundColor: 'white'
-    }
+    },
+    obscured: {
+        opacity: 90
+    },
 })

@@ -12,8 +12,6 @@ export interface IAppContext {
     isWon: boolean;
 }
 
-//(boardState: PlayerType[][], CurrentPlayer : PlayerType, col: number, row: number) => void;
-
 const emptyFunction = () => {};
 
 export const createNewArray = () => {
