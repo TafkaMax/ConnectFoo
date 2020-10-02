@@ -7,7 +7,7 @@ export const WinScreen = () => (
         <AppContextConsumer>
             { value =>
                 <View style={styles.winscreen}>
-                    <Text style={styles.wintext}>{value.nextMoveBy === "R" ? "Blue" : "Red"} has won!</Text>
+                    <Text style={styles.wintext}>{value.nextMoveBy === "A" ? "Dark" : "Light"} has won!</Text>
                 </View>
             }
         </AppContextConsumer>

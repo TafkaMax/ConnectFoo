@@ -10,8 +10,6 @@ import { PlayerType } from "../context/AppContext";
 export const didWinSecondary = (boardState: PlayerType[][], currentPlayer: PlayerType, y: number, x: number, yDelta: number, xDelta: number) => {
     let match = false;
     let matches = 0;
-
-    //TODO add so col and row, find their location in the array.
     //if locations is [3][2] [[x,x,^,x,x,x,x],
 //                            [x,x,|,x,x,x,x],
 //                            [x,1,1,1,x,x,x],
@@ -23,10 +21,6 @@ export const didWinSecondary = (boardState: PlayerType[][], currentPlayer: Playe
 
      //must gives positive direction vector or something length 
      // must give us other direction vector or something length
-
-    let yBorder = boardState.length - y;
-    let xBorder = boardState[y].length - x;
-
     
 
     while(y < boardState.length && y >= 0 && x < boardState[y].length && x >= 0) {
@@ -38,22 +32,9 @@ export const didWinSecondary = (boardState: PlayerType[][], currentPlayer: Playe
         } else if (locationToCheck === currentPlayer && match) {
             matches++;
         }
-        console.log('------------');
-        console.log(y + ' :Y before');
         y += yDelta;
-        console.log(y + ' :Y after');
-        console.log('------------');
-        console.log(x + ' :X before');
-        x += xDelta
-        console.log(x + ' :X after');
-        
+        x += xDelta   
     }
-
-    console.log('------------');
-    console.log('exited')
-    console.log('got matches: ' + matches);
-
-    // console.log(matches);
     return matches;
 }
 

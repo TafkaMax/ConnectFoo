@@ -13,36 +13,27 @@ type Props = {
 
 
 const getStyle = (boardState : PlayerType[][], y: number, x: number) => {
-    if(boardState[y][x] === 'R' ) {
-        return styles.redplayer;
+    if(boardState[y][x] === 'A' ) {
+        return styles.lightcolorplayer;
     } else if (boardState[y][x] === 'B') {
-        return styles.blueplayer;
+        return styles.darkcolorplayer;
     } else {
         return styles.empty;
     }
 }
 
 const getCurrentPlayerType = (state : IAppContext) => {
-    return state.nextMoveBy === "R" ? "R" : state.nextMoveBy === "B" ? "B" : "";
+    return state.nextMoveBy === "A" ? "A" : state.nextMoveBy === "B" ? "B" : "";
 }
 
 export const GameButton = ({isPortrait, playerType, y, x} : Props) => {
-    // const checkDisabled = (boardState: PlayerType[][]) => 
-    // {
-    //     for (let i = board; i < boardState.length; i++) {
-    //         for (let j = 0; j < boardState[0].length; j++) {
-    //             if ()
-    //         }
-            
-    //     }
-    // }
     return (
         <AppContextConsumer>
             { value => 
                 <View style={[styles.cell, isPortrait() ? styles.vertical : styles.horizontal]}>
                     <TouchableOpacity 
                         onPress={() => {value.makeMove(getCurrentPlayerType(value), y, x)}} 
-                        style={[styles.round, getStyle(value.boardState, y, x), value.isWon === true ? styles.obscured : null]}
+                        style={[styles.round, getStyle(value.boardState, y, x)]}
                         disabled = {checkDisabled(value.boardState, y, x) || value.isWon}
                         >
                     </TouchableOpacity> 
@@ -77,20 +68,16 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         padding: 25,
         borderRadius: 100,
-        backgroundColor: 'orange',
         borderColor: 'gray',
-        borderWidth: 1
+        borderWidth: 1,
     },
-    redplayer: {
-        backgroundColor: 'red'
+    lightcolorplayer: {
+        backgroundColor: '#A7CA47'
     },
-    blueplayer: {
-        backgroundColor: 'blue'
+    darkcolorplayer: {
+        backgroundColor: '#515545'
     },
     empty: {
         backgroundColor: 'white'
-    },
-    obscured: {
-        opacity: 90
     },
 })

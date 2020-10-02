@@ -1,7 +1,7 @@
 import React from 'react';
 
 // R = red, B = Blue and "" is empty slot.
-export type PlayerType = 'R' | 'B' | '';
+export type PlayerType = 'A' | 'B' | '';
 
 export interface IAppContext {
     moves: number;
@@ -27,7 +27,7 @@ export const createNewArray = () => {
     
 export const initialContext: IAppContext = {
     moves: 0,
-    nextMoveBy: 'R',
+    nextMoveBy: 'A',
     startNewGame: emptyFunction,
     makeMove: emptyFunction,
     boardState: createNewArray(),

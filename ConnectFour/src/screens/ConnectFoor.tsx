@@ -11,9 +11,9 @@ import { checkForSpotInColumn, didWinMain, validMove } from '../helpers/helperme
 
 
 
-type Props = StackScreenProps<StackParams, 'Home'>;
+type Props = StackScreenProps<StackParams, 'ConnectFoor'>;
 
-export const HomeScreen = () => {
+export const ConnectFoor = () => {
     
     const window = useWindowDimensions();
     const isPortrait = () => window.height > window.width;
@@ -27,15 +27,13 @@ export const HomeScreen = () => {
             boardState: createNewArray(),
             isWon: false
         }));
-        console.log(state.boardState);
-        console.log('----------------------------------------------------');
     };
 
     const makeMove = (currentPlayer: PlayerType, y: number, x: number) => {
         setState((prevState) => ({
             ...prevState,
             moves: prevState.moves + 1,
-            nextMoveBy: prevState.nextMoveBy === 'R' ? 'B' : 'R',
+            nextMoveBy: prevState.nextMoveBy === 'A' ? 'B' : 'A',
             boardState: setMoveToCell(prevState.boardState, currentPlayer, y, x),
         }));
         
@@ -76,13 +74,9 @@ export const HomeScreen = () => {
             }}>
                 <GameStatistics
                 />
-                    
-                
                 <GameBoard
                     isPortrait = {isPortrait}
                     />
-                {console.log(state.isWon)}
-                {console.log('----------------------------------------------------')}
             </View>
         </AppContextProvider>
     );

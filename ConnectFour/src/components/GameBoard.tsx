@@ -3,7 +3,7 @@ import React from 'react';
 import { GameButton } from "./GameButton";
 import { AppContextConsumer } from "../context/AppContext";
 import { WinScreen } from "./WinScreen";
-import { BlurView, VibrancyView } from "@react-native-community/blur";
+import { BlurView } from "@react-native-community/blur";
 
 
 type Props = {
@@ -22,13 +22,9 @@ export const GameBoard = ({isPortrait} : Props) => {
                             {[...value.boardState].map((row, rowIndex) => 
                             row.map((column, columnIndex) => 
                             <GameButton key={columnIndex} isPortrait= {isPortrait} playerType = {column} y = {rowIndex} x={columnIndex}/>))}
-                            <BlurView style={styles.blurView} blurType="light" blurAmount={20} reducedTransparencyFallbackColor="gray"/>
+                            {value.isWon &&<BlurView style={styles.blurView} blurType="light" blurAmount={20} reducedTransparencyFallbackColor="gray"/>}
                             { value.isWon && <WinScreen/>}
                     </View>
-
-
-                
-                
             }
     </AppContextConsumer>
     );
