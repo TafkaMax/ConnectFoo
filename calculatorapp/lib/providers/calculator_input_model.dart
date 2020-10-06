@@ -1,7 +1,7 @@
 import 'dart:collection';
 
-import 'package:calculatorapp/enums/operators.dart';
-import 'package:calculatorapp/models/calculator_input.dart';
+import 'package:Kalkulator/enums/operators.dart';
+import 'package:Kalkulator/models/calculator_input.dart';
 import 'package:flutter/material.dart';
 
 class CalculatorInputModel with ChangeNotifier {

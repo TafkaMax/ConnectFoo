@@ -1,6 +1,6 @@
 import 'dart:collection';
 
-import 'package:calculatorapp/enums/operators.dart';
+import 'package:Kalkulator/enums/operators.dart';
 
 class CalculatorInput {
   //Private properties.

@@ -1,4 +1,4 @@
-import 'package:calculatorapp/screens/calculator_screen.dart';
+import 'package:Kalkulator/screens/calculator_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
