@@ -23,6 +23,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  provider: ^4.3.2+2
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -43,7 +44,15 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
-
+  fonts:
+    - family:  Digital7
+      fonts:
+        - asset: fonts/Digital7-Regular.ttf
+        - asset: fonts/Digital7-Italic.ttf
+          style: italic
+        - asset: fonts/Digital7-Mono.ttf
+        - asset: fonts/Digital7-MonoItalic.ttf
+          style: italic
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
