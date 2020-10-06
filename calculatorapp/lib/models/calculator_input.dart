@@ -19,12 +19,9 @@ class CalculatorInput {
     //Add number to display
 
     //if current operator is not empty make the currentinput equal input, so it changes visually
-    if (_currentOperator != Operators.empty) {
-      _currentInput = input;
-    } else {
-      //if current operator is empty then just add input to currentinput
-      _currentInput += input;
-    }
+
+    //if current operator is empty then just add input to currentinput
+    _currentInput += input;
   }
 
   void addDecimal() {
@@ -57,24 +54,28 @@ class CalculatorInput {
     _currentInputQueue.add(_currentInput);
     addPreviousOperatorToQueue();
     _currentOperator = Operators.divide;
+    _currentInput = "";
   }
 
   void multiply() {
     _currentInputQueue.add(_currentInput);
     addPreviousOperatorToQueue();
     _currentOperator = Operators.multiply;
+    _currentInput = "";
   }
 
   void plus() {
     _currentInputQueue.add(_currentInput);
     addPreviousOperatorToQueue();
     _currentOperator = Operators.add;
+    _currentInput = "";
   }
 
   void minus() {
     _currentInputQueue.add(_currentInput);
     addPreviousOperatorToQueue();
     _currentOperator = Operators.substract;
+    _currentInput = "";
   }
 
   // https://stackoverflow.com/a/24085491
