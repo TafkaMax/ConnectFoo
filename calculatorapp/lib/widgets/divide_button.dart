@@ -5,8 +5,11 @@ import 'package:provider/provider.dart';
 class DivideButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return RaisedButton(
-      child: Text('/'),
+    return ElevatedButton(
+      child: Text(
+        '/',
+        style: Theme.of(context).textTheme.button,
+      ),
       onPressed: () {
         Provider.of<CalculatorInputModel>(context, listen: false).divide();
       },

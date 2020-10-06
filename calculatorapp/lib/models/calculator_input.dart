@@ -28,7 +28,9 @@ class CalculatorInput {
   }
 
   void addDecimal() {
-    _currentInput += '.';
+    if (!_currentInput.contains('.')) {
+      _currentInput += '.';
+    }
   }
 
   //clears current entry, operator still stays the same

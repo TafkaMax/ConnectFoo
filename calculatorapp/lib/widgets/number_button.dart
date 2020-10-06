@@ -9,8 +9,11 @@ class NumberButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RaisedButton(
-        child: Text(buttonnumber.toString()),
+    return ElevatedButton(
+        child: Text(
+          buttonnumber.toString(),
+          style: Theme.of(context).textTheme.button,
+        ),
         onPressed: () {
           Provider.of<CalculatorInputModel>(context, listen: false)
               .addNumber(buttonnumber.toString());

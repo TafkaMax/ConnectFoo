@@ -5,8 +5,11 @@ import 'package:provider/provider.dart';
 class ClearEntryButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return RaisedButton(
-        child: Text('CE'),
+    return ElevatedButton(
+        child: Text(
+          'CE',
+          style: Theme.of(context).textTheme.button,
+        ),
         onPressed: () {
           Provider.of<CalculatorInputModel>(context, listen: false)
               .clearEntry();
