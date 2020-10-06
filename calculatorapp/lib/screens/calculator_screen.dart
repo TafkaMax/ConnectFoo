@@ -1,4 +1,5 @@
 import 'package:calculatorapp/providers/calculator_input_model.dart';
+import 'package:calculatorapp/widgets/backspace_button.dart';
 import 'package:calculatorapp/widgets/calculator_input_screen.dart';
 import 'package:calculatorapp/widgets/clear_button.dart';
 import 'package:calculatorapp/widgets/clear_entry_button.dart';
@@ -52,6 +53,9 @@ class CalculatorScreen extends StatelessWidget {
                     ),
                     Expanded(
                       child: DecimalButton(),
+                    ),
+                    Expanded(
+                      child: BackSpaceButton(),
                     ),
                   ],
                 ),

@@ -46,6 +46,11 @@ class CalculatorInputModel with ChangeNotifier {
     notifyListeners();
   }
 
+  void backspace() {
+    _calculatorInput.backSpace();
+    notifyListeners();
+  }
+
   void plus() {
     _calculatorInput.plus();
     notifyListeners();

@@ -33,6 +33,13 @@ class CalculatorInput {
     }
   }
 
+  void backSpace() {
+    if (_currentInput.length != 0) {
+      _currentInput = _currentInput.replaceRange(
+          _currentInput.length - 1, _currentInput.length - 0, "");
+    }
+  }
+
   //clears current entry, operator still stays the same
   void clearEntry() {
     _currentInput = "";
