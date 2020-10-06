@@ -8,6 +8,7 @@ class CalculatorInput {
   Queue<String> _currentCalculatedQueue = new Queue();
   String _currentInput = "";
   Operators _currentOperator = Operators.empty;
+  String _defaultValue = "Error!";
 
   //Getter methods for private props
   Queue<String> get currentInputQueue => _currentInputQueue;
@@ -121,6 +122,7 @@ class CalculatorInput {
     //display the answer on dipslay
     _currentInput = _currentCalculatedQueue.removeLast();
     //reset operator after equals
+    _currentInput = checkDoubleFloor(_currentInput);
     _currentOperator = Operators.empty;
   }
 
@@ -152,5 +154,21 @@ class CalculatorInput {
     if (_currentOperator != Operators.empty) {
       _currentInputQueue.add(getCurrentOperatorString());
     }
+  }
+
+  bool isInteger(num value) => value is int || value == value.roundToDouble();
+
+  String checkDoubleFloor(String currentInput) {
+    var value = double.tryParse(currentInput) ?? _defaultValue;
+    print(value);
+
+    if (value != _defaultValue) {
+      if (isInteger(value)) {
+        double doubleValue = value;
+        int newValue = doubleValue.floor();
+        return newValue.toString();
+      }
+    }
+    return value.toString();
   }
 }
