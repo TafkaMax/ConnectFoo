@@ -28,3 +28,13 @@ Android studio - install obsolete SDK package 26(show hidden obsolete packages i
 run *flutter doctor* and *flutter precache*. If flutter doctor doesn't show that plugins are there I can't help, same problem for me. 
 
 VScode install the flutter extension. It find avd-s itself. During first launchup you might need to change /Android/Sdk/build-tools/SDKVERSION(for me 30 atm)/aapt chmod to a+x
+
+- During bundling to release
+
+DOWNLOAD BUNDLETOOL JAR FILE
+... BASH/ZSH file add similar line -> alias bundletool="java -jar $HOME/whereveritis/bundletool.jar" so you can call bundletool ...
+
+bundletool build-apks --bundle=app-release.aab --output=~/APKS/APKNAME.apks --ks=~/key.jks --ks-pass=pass:PW --ks-key-alias=key --key-pass=pass:PW 
+...do this in app-release.aab folder
+bundletool install-apks --apks=~/APKS/kalkulator.v2.apks
+...android phone needs to be connected via usb
