@@ -27,6 +27,7 @@ class CalculatorApp extends StatelessWidget {
               width: 2,
               style: BorderStyle.solid,
             ),
+            padding: EdgeInsets.symmetric(vertical: 9),
           ),
         ),
         textTheme: TextTheme(
@@ -48,7 +49,7 @@ class CalculatorApp extends StatelessWidget {
             ],
           ),
           button: TextStyle(
-            fontSize: 40,
+            fontSize: 50,
             fontWeight: FontWeight.bold,
             color: Colors.black,
             shadows: [
