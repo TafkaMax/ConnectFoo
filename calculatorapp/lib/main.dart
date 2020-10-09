@@ -1,3 +1,4 @@
+import 'package:Kalkulator/route_generator.dart';
 import 'package:Kalkulator/screens/calculator_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +11,9 @@ class CalculatorApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Calculator',
+      title: 'Kalkulator',
+      initialRoute: '/',
+      onGenerateRoute: RouteGenerator.generateRoute,
       theme: ThemeData(
         fontFamily: 'Digital7',
         brightness: Brightness.dark,
@@ -67,7 +70,6 @@ class CalculatorApp extends StatelessWidget {
           ),
         ),
       ),
-      home: CalculatorScreen(),
     );
   }
 }
