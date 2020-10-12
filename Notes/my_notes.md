@@ -34,6 +34,8 @@ VScode install the flutter extension. It find avd-s itself. During first launchu
 DOWNLOAD BUNDLETOOL JAR FILE
 ... BASH/ZSH file add similar line -> alias bundletool="java -jar $HOME/whereveritis/bundletool.jar" so you can call bundletool ...
 
+... flutter build appbundle
+
 bundletool build-apks --bundle=app-release.aab --output=~/APKS/APKNAME.apks --ks=~/key.jks --ks-pass=pass:PW --ks-key-alias=key --key-pass=pass:PW 
 ...do this in app-release.aab folder
 bundletool install-apks --apks=~/APKS/kalkulator.v2.apks

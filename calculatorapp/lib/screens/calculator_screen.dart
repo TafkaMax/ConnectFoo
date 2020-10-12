@@ -3,6 +3,7 @@ import 'package:Kalkulator/widgets/backspace_button.dart';
 import 'package:Kalkulator/widgets/calculator_input_screen.dart';
 import 'package:Kalkulator/widgets/clear_button.dart';
 import 'package:Kalkulator/widgets/clear_entry_button.dart';
+import 'package:Kalkulator/widgets/custom_dropdown_menu.dart';
 import 'package:Kalkulator/widgets/decimal_button.dart';
 import 'package:Kalkulator/widgets/divide_button.dart';
 import 'package:Kalkulator/widgets/equals_button.dart';
@@ -30,6 +31,9 @@ class CalculatorScreen extends StatelessWidget {
                   'Calculator',
                   style: Theme.of(context).textTheme.headline1,
                 ),
+                actions: [
+                  CustomDropDownMenu(),
+                ],
               ),
               body: SingleChildScrollView(
                 child: ConstrainedBox(

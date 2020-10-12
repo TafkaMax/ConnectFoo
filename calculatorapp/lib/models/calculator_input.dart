@@ -4,6 +4,8 @@ import 'package:Kalkulator/enums/operators.dart';
 
 class CalculatorInput {
   //Private properties.
+  String _currentInputForHistory = "";
+  List<String> _calculatorHistory = new List();
   Queue<String> _currentInputQueue = new Queue();
   Queue<String> _currentCalculatedQueue = new Queue();
   String _currentInput = "";
@@ -21,12 +23,15 @@ class CalculatorInput {
     //if current operator is not empty make the currentinput equal input, so it changes visually
 
     //if current operator is empty then just add input to currentinput
+
     _currentInput += input;
+    _currentInputForHistory += input;
   }
 
   void addDecimal() {
     if (!_currentInput.contains('.')) {
       _currentInput += '.';
+      _currentInputForHistory += '.';
     }
   }
 
@@ -34,6 +39,10 @@ class CalculatorInput {
     if (_currentInput.length != 0) {
       _currentInput = _currentInput.replaceRange(
           _currentInput.length - 1, _currentInput.length - 0, "");
+      _currentInputForHistory = _currentInputForHistory.replaceRange(
+          _currentInputForHistory.length - 1,
+          _currentInputForHistory.length - 0,
+          "");
     }
   }
 
@@ -45,6 +54,7 @@ class CalculatorInput {
   //clears whole memory
   void clear() {
     _currentInput = "";
+    _currentInputForHistory = "";
     _currentInputQueue.clear();
     _currentCalculatedQueue.clear();
     _currentOperator = Operators.empty;
@@ -54,6 +64,7 @@ class CalculatorInput {
     _currentInputQueue.add(_currentInput);
     addPreviousOperatorToQueue();
     _currentOperator = Operators.divide;
+    _currentInputForHistory += getCurrentOperatorString();
     _currentInput = "";
   }
 
@@ -61,6 +72,7 @@ class CalculatorInput {
     _currentInputQueue.add(_currentInput);
     addPreviousOperatorToQueue();
     _currentOperator = Operators.multiply;
+    _currentInputForHistory += getCurrentOperatorString();
     _currentInput = "";
   }
 
@@ -68,6 +80,7 @@ class CalculatorInput {
     _currentInputQueue.add(_currentInput);
     addPreviousOperatorToQueue();
     _currentOperator = Operators.add;
+    _currentInputForHistory += getCurrentOperatorString();
     _currentInput = "";
   }
 
@@ -75,6 +88,7 @@ class CalculatorInput {
     _currentInputQueue.add(_currentInput);
     addPreviousOperatorToQueue();
     _currentOperator = Operators.substract;
+    _currentInputForHistory += getCurrentOperatorString();
     _currentInput = "";
   }
 
@@ -132,7 +146,10 @@ class CalculatorInput {
     //display the answer on dipslay
     _currentInput = _currentCalculatedQueue.removeLast();
     //reset operator after equals
-    _currentInput = checkDoubleFloor(_currentInput);
+    _currentInput = convertDoubleToInt(_currentInput);
+    _currentInputForHistory += " =  $_currentInput";
+    _calculatorHistory.add(_currentInputForHistory);
+    _currentInputForHistory = _currentInput;
     _currentOperator = Operators.empty;
   }
 
@@ -168,7 +185,7 @@ class CalculatorInput {
 
   bool isInteger(num value) => value is int || value == value.roundToDouble();
 
-  String checkDoubleFloor(String currentInput) {
+  String convertDoubleToInt(String currentInput) {
     var value = double.tryParse(currentInput) ?? _defaultValue;
     print(value);
 
