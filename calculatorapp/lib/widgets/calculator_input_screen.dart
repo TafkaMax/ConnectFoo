@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class CalculatorInputScreen extends StatelessWidget {
+  final BoxConstraints boxConstraints;
+
+  const CalculatorInputScreen({this.boxConstraints});
+
   @override
   Widget build(BuildContext context) {
     return Consumer<CalculatorInputModel>(
@@ -18,30 +22,16 @@ class CalculatorInputScreen extends StatelessWidget {
           ),
           color: Colors.amber,
         ),
-        child: Row(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.end,
+        constraints: BoxConstraints(
+          minWidth: boxConstraints.maxWidth,
+        ),
+        child: Wrap(
+          alignment: WrapAlignment.end,
           children: <Widget>[
             Text(
-              calculatorinputmodel.currentVisualInput,
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 50,
-                fontWeight: FontWeight.bold,
-                shadows: [
-                  Shadow(
-                    color: Colors.blue,
-                    offset: Offset.fromDirection(4, 3.0),
-                    blurRadius: 3.0,
-                  ),
-                  Shadow(
-                    color: Colors.redAccent,
-                    offset: Offset.fromDirection(0, 3.0),
-                    blurRadius: 3.0,
-                  ),
-                ],
-              ),
-              overflow: TextOverflow.ellipsis,
+              calculatorinputmodel.currentInput,
+              style: Theme.of(context).textTheme.headline1,
+              softWrap: true,
             ),
           ],
         ),

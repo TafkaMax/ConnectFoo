@@ -7,11 +7,11 @@ import 'package:flutter/material.dart';
 class CalculatorInputModel with ChangeNotifier {
   final _calculatorInput = CalculatorInput();
 
-  Queue<String> get inputs => _calculatorInput.currentInputQueue;
+  Queue<String> get currentInputQueue => _calculatorInput.currentInputQueue;
   String get currentInput => _calculatorInput.currentInput;
   Operators get currentOperator => _calculatorInput.currentOperator;
   List<String> get calculatorHistory => _calculatorInput.calculatorHistory;
-  String get currentVisualInput => _calculatorInput.currentVisualInput;
+  List<String> get displayInput => _calculatorInput.displayInput;
 
   void addNumber(String input) {
     _calculatorInput.addNumber(input);

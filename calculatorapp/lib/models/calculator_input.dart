@@ -9,16 +9,16 @@ class CalculatorInput {
   Queue<String> _currentInputQueue = new Queue();
   Queue<String> _currentCalculatedQueue = new Queue();
   String _currentInput = "";
-  String _currentVisualInput = "";
   Operators _currentOperator = Operators.empty;
   String _defaultValue = "Error!";
+  List<String> _displayInput = new List();
 
   //Getter methods for private props
   Queue<String> get currentInputQueue => _currentInputQueue;
   String get currentInput => _currentInput;
-  String get currentVisualInput => _currentVisualInput;
   Operators get currentOperator => _currentOperator;
   List<String> get calculatorHistory => _calculatorHistory;
+  List<String> get displayInput => _displayInput;
 
   void addNumber(String input) {
     //Add number to display
@@ -30,18 +30,19 @@ class CalculatorInput {
       if (_currentInput.contains(".") || _currentInput.length == 0) {
         _currentInput += input;
         _currentInputForHistory += input;
-        _currentVisualInput += input;
+        _displayInput.add(input);
       }
     } else {
       _currentInput += input;
       _currentInputForHistory += input;
-      _currentVisualInput += input;
+      _displayInput.add(input);
     }
   }
 
   void addDecimal() {
     if (!_currentInput.contains('.')) {
       _currentInput += '.';
+      _displayInput.add('.');
       _currentInputForHistory += '.';
     }
   }
@@ -54,17 +55,16 @@ class CalculatorInput {
           _currentInputForHistory.length - 1,
           _currentInputForHistory.length - 0,
           "");
-      _currentVisualInput = _currentVisualInput.replaceRange(
-          _currentVisualInput.length - 1, _currentVisualInput.length - 0, "");
+      _displayInput.removeLast();
     }
   }
 
   //clears current entry, operator still stays the same
   void clearEntry() {
-    print(_currentInput);
-    print(_currentInputQueue);
+    for (var i = 0; i < _currentInput.length; i++) {
+      _displayInput.removeLast();
+    }
     _currentInput = "";
-    _currentVisualInput = "";
     _currentOperator = Operators.empty;
   }
 
@@ -72,46 +72,35 @@ class CalculatorInput {
   void clear() {
     _currentInput = "";
     _currentInputForHistory = "";
-    _currentVisualInput = "";
+    _displayInput.clear();
     _currentInputQueue.clear();
     _currentCalculatedQueue.clear();
     _currentOperator = Operators.empty;
   }
 
-  void divide() {
+  void addOperator(Operators operators) {
     _currentInputQueue.add(_currentInput);
     addPreviousOperatorToQueue();
-    _currentOperator = Operators.divide;
-    _currentVisualInput += getCurrentOperatorString();
+    _currentOperator = operators;
+    _displayInput.add(getCurrentOperatorString());
     _currentInputForHistory += getCurrentOperatorString();
     _currentInput = "";
+  }
+
+  void divide() {
+    addOperator(Operators.divide);
   }
 
   void multiply() {
-    _currentInputQueue.add(_currentInput);
-    addPreviousOperatorToQueue();
-    _currentOperator = Operators.multiply;
-    _currentVisualInput += getCurrentOperatorString();
-    _currentInputForHistory += getCurrentOperatorString();
-    _currentInput = "";
+    addOperator(Operators.multiply);
   }
 
   void plus() {
-    _currentInputQueue.add(_currentInput);
-    addPreviousOperatorToQueue();
-    _currentOperator = Operators.add;
-    _currentVisualInput += getCurrentOperatorString();
-    _currentInputForHistory += getCurrentOperatorString();
-    _currentInput = "";
+    addOperator(Operators.add);
   }
 
   void minus() {
-    _currentInputQueue.add(_currentInput);
-    addPreviousOperatorToQueue();
-    _currentOperator = Operators.substract;
-    _currentVisualInput += getCurrentOperatorString();
-    _currentInputForHistory += getCurrentOperatorString();
-    _currentInput = "";
+    addOperator(Operators.substract);
   }
 
   // https://stackoverflow.com/a/24085491
@@ -172,7 +161,8 @@ class CalculatorInput {
     _currentInputForHistory += " =  $_currentInput";
     _calculatorHistory.add(_currentInputForHistory);
     _currentInputForHistory = _currentInput;
-    _currentVisualInput = _currentInput;
+    _displayInput.clear();
+    _displayInput.add(_currentInput);
     _currentOperator = Operators.empty;
   }
 
@@ -210,7 +200,6 @@ class CalculatorInput {
 
   String convertDoubleToInt(String currentInput) {
     var value = double.tryParse(currentInput) ?? _defaultValue;
-    print(value);
 
     if (value != _defaultValue) {
       if (isInteger(value)) {

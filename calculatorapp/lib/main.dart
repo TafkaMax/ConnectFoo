@@ -18,6 +18,7 @@ class CalculatorApp extends StatelessWidget {
         brightness: Brightness.dark,
         primaryColor: Colors.amber,
         accentColor: Colors.redAccent,
+        disabledColor: Colors.grey,
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
             primary: Colors.amber,

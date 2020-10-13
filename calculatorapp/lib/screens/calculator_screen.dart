@@ -1,16 +1,14 @@
 import 'package:Kalkulator/providers/calculator_input_model.dart';
 import 'package:Kalkulator/widgets/backspace_button.dart';
+import 'package:Kalkulator/widgets/calculator_display.dart';
 import 'package:Kalkulator/widgets/calculator_input_screen.dart';
 import 'package:Kalkulator/widgets/clear_button.dart';
 import 'package:Kalkulator/widgets/clear_entry_button.dart';
 import 'package:Kalkulator/widgets/custom_dropdown_menu.dart';
 import 'package:Kalkulator/widgets/decimal_button.dart';
-import 'package:Kalkulator/widgets/divide_button.dart';
 import 'package:Kalkulator/widgets/equals_button.dart';
-import 'package:Kalkulator/widgets/minus_button.dart';
-import 'package:Kalkulator/widgets/multiplier_button.dart';
+import 'package:Kalkulator/widgets/generic_operation_button.dart';
 import 'package:Kalkulator/widgets/number_button.dart';
-import 'package:Kalkulator/widgets/plus_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
@@ -52,7 +50,12 @@ class CalculatorScreen extends StatelessWidget {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Container(
-                            child: CalculatorInputScreen(),
+                            child: CalculatorDisplay(
+                                boxConstraints: boxConstraints),
+                          ),
+                          Container(
+                            child: CalculatorInputScreen(
+                                boxConstraints: boxConstraints),
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -84,7 +87,9 @@ class CalculatorScreen extends StatelessWidget {
                                 child: NumberButton(buttonnumber: 3),
                               ),
                               Expanded(
-                                child: PlusButton(),
+                                child: GenericOperationButton(
+                                  operation: "+",
+                                ),
                               ),
                             ],
                           ),
@@ -101,7 +106,7 @@ class CalculatorScreen extends StatelessWidget {
                                 child: NumberButton(buttonnumber: 6),
                               ),
                               Expanded(
-                                child: MinusButton(),
+                                child: GenericOperationButton(operation: "-"),
                               ),
                             ],
                           ),
@@ -118,7 +123,9 @@ class CalculatorScreen extends StatelessWidget {
                                 child: NumberButton(buttonnumber: 9),
                               ),
                               Expanded(
-                                child: DivideButton(),
+                                child: GenericOperationButton(
+                                  operation: "/",
+                                ),
                               ),
                             ],
                           ),
@@ -129,7 +136,9 @@ class CalculatorScreen extends StatelessWidget {
                                 child: NumberButton(buttonnumber: 0),
                               ),
                               Expanded(
-                                child: MultiplierButton(),
+                                child: GenericOperationButton(
+                                  operation: "*",
+                                ),
                               ),
                               Expanded(
                                 child: EqualsButton(),
