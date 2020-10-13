@@ -1,5 +1,6 @@
-import 'package:Kalkulator/screens/calculator_history_screen.dart';
+import 'package:Kalkulator/providers/calculator_input_model.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class CustomDropDownMenu extends StatelessWidget {
   final String dropDownValue = "Menu";
@@ -27,12 +28,11 @@ class CustomDropDownMenu extends StatelessWidget {
       style: TextStyle(),
       onChanged: (value) {
         if (value == "History") {
-          Navigator.push(
+          Navigator.pushNamed(
             context,
-            MaterialPageRoute(
-              builder: (_) =>
-                  CalculatorHistoryScreen(listOfCalculatorHistory: null),
-            ),
+            '/history',
+            arguments: Provider.of<CalculatorInputModel>(context, listen: false)
+                .calculatorHistory,
           );
         }
       },

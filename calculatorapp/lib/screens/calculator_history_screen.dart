@@ -1,11 +1,9 @@
-import 'package:Kalkulator/providers/calculator_input_model.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class CalculatorHistoryScreen extends StatelessWidget {
-  final List<String> listOfCalculatorHistory;
+  final List<String> calculatorHistory;
 
-  CalculatorHistoryScreen({@required this.listOfCalculatorHistory});
+  CalculatorHistoryScreen({@required this.calculatorHistory});
 
   @override
   Widget build(BuildContext context) {
@@ -14,8 +12,43 @@ class CalculatorHistoryScreen extends StatelessWidget {
       Orientation orientation,
     ) {
       return Scaffold(
-        appBar: AppBar(),
-        body: ListView(),
+        appBar: AppBar(
+          title: Text(
+            "Calculator History",
+            style: Theme.of(context).textTheme.headline2,
+          ),
+        ),
+        body: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/images/background2.png"),
+              fit: BoxFit.cover,
+            ),
+          ),
+          child: calculatorHistory.length > 0
+              ? ListView.builder(
+                  reverse: true,
+                  itemCount: calculatorHistory.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return new ListTile(
+                      leading: Icon(
+                        Icons.history,
+                        size: 35,
+                        color: Colors.amber,
+                      ),
+                      title: Text(
+                        calculatorHistory[index],
+                        style: Theme.of(context).textTheme.bodyText1,
+                      ),
+                    );
+                  })
+              : Center(
+                  child: Text(
+                    'History is empty',
+                    style: Theme.of(context).textTheme.headline2,
+                  ),
+                ),
+        ),
       );
     });
   }

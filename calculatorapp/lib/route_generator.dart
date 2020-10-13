@@ -1,3 +1,4 @@
+import 'package:Kalkulator/screens/calculator_history_screen.dart';
 import 'package:Kalkulator/screens/calculator_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -8,8 +9,12 @@ class RouteGenerator {
     switch (settings.name) {
       case "/":
         return MaterialPageRoute(builder: (context) => CalculatorScreen());
-      // case "/songinfo":
-      //   return MaterialPageRoute(builder: (context) => SongInfoScreen());
+      case "/history":
+        return MaterialPageRoute(
+          builder: (context) => CalculatorHistoryScreen(
+            calculatorHistory: args,
+          ),
+        );
       default:
         return _errorRoute();
     }

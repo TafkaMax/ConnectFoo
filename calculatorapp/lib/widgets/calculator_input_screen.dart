@@ -23,7 +23,7 @@ class CalculatorInputScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
             Text(
-              calculatorinputmodel.currentInput,
+              calculatorinputmodel.currentVisualInput,
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 50,

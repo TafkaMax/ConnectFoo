@@ -1,5 +1,4 @@
 import 'package:Kalkulator/route_generator.dart';
-import 'package:Kalkulator/screens/calculator_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -48,6 +47,40 @@ class CalculatorApp extends StatelessWidget {
                 color: Colors.redAccent,
                 offset: Offset.fromDirection(0, 5.0),
                 blurRadius: 5.0,
+              ),
+            ],
+          ),
+          headline2: TextStyle(
+            fontSize: 30,
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+            shadows: [
+              Shadow(
+                color: Colors.blue,
+                offset: Offset.fromDirection(4, 3.0),
+                blurRadius: 3.0,
+              ),
+              Shadow(
+                color: Colors.redAccent,
+                offset: Offset.fromDirection(0, 3.0),
+                blurRadius: 3.0,
+              ),
+            ],
+          ),
+          bodyText1: TextStyle(
+            fontSize: 30,
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+            shadows: [
+              Shadow(
+                color: Colors.blue,
+                offset: Offset.fromDirection(4, 3.0),
+                blurRadius: 3.0,
+              ),
+              Shadow(
+                color: Colors.redAccent,
+                offset: Offset.fromDirection(0, 3.0),
+                blurRadius: 3.0,
               ),
             ],
           ),

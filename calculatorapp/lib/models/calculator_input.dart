@@ -9,13 +9,16 @@ class CalculatorInput {
   Queue<String> _currentInputQueue = new Queue();
   Queue<String> _currentCalculatedQueue = new Queue();
   String _currentInput = "";
+  String _currentVisualInput = "";
   Operators _currentOperator = Operators.empty;
   String _defaultValue = "Error!";
 
   //Getter methods for private props
   Queue<String> get currentInputQueue => _currentInputQueue;
   String get currentInput => _currentInput;
+  String get currentVisualInput => _currentVisualInput;
   Operators get currentOperator => _currentOperator;
+  List<String> get calculatorHistory => _calculatorHistory;
 
   void addNumber(String input) {
     //Add number to display
@@ -23,9 +26,17 @@ class CalculatorInput {
     //if current operator is not empty make the currentinput equal input, so it changes visually
 
     //if current operator is empty then just add input to currentinput
-
-    _currentInput += input;
-    _currentInputForHistory += input;
+    if (input == "0") {
+      if (_currentInput.contains(".") || _currentInput.length == 0) {
+        _currentInput += input;
+        _currentInputForHistory += input;
+        _currentVisualInput += input;
+      }
+    } else {
+      _currentInput += input;
+      _currentInputForHistory += input;
+      _currentVisualInput += input;
+    }
   }
 
   void addDecimal() {
@@ -43,18 +54,25 @@ class CalculatorInput {
           _currentInputForHistory.length - 1,
           _currentInputForHistory.length - 0,
           "");
+      _currentVisualInput = _currentVisualInput.replaceRange(
+          _currentVisualInput.length - 1, _currentVisualInput.length - 0, "");
     }
   }
 
   //clears current entry, operator still stays the same
   void clearEntry() {
+    print(_currentInput);
+    print(_currentInputQueue);
     _currentInput = "";
+    _currentVisualInput = "";
+    _currentOperator = Operators.empty;
   }
 
   //clears whole memory
   void clear() {
     _currentInput = "";
     _currentInputForHistory = "";
+    _currentVisualInput = "";
     _currentInputQueue.clear();
     _currentCalculatedQueue.clear();
     _currentOperator = Operators.empty;
@@ -64,6 +82,7 @@ class CalculatorInput {
     _currentInputQueue.add(_currentInput);
     addPreviousOperatorToQueue();
     _currentOperator = Operators.divide;
+    _currentVisualInput += getCurrentOperatorString();
     _currentInputForHistory += getCurrentOperatorString();
     _currentInput = "";
   }
@@ -72,6 +91,7 @@ class CalculatorInput {
     _currentInputQueue.add(_currentInput);
     addPreviousOperatorToQueue();
     _currentOperator = Operators.multiply;
+    _currentVisualInput += getCurrentOperatorString();
     _currentInputForHistory += getCurrentOperatorString();
     _currentInput = "";
   }
@@ -80,6 +100,7 @@ class CalculatorInput {
     _currentInputQueue.add(_currentInput);
     addPreviousOperatorToQueue();
     _currentOperator = Operators.add;
+    _currentVisualInput += getCurrentOperatorString();
     _currentInputForHistory += getCurrentOperatorString();
     _currentInput = "";
   }
@@ -88,6 +109,7 @@ class CalculatorInput {
     _currentInputQueue.add(_currentInput);
     addPreviousOperatorToQueue();
     _currentOperator = Operators.substract;
+    _currentVisualInput += getCurrentOperatorString();
     _currentInputForHistory += getCurrentOperatorString();
     _currentInput = "";
   }
@@ -150,6 +172,7 @@ class CalculatorInput {
     _currentInputForHistory += " =  $_currentInput";
     _calculatorHistory.add(_currentInputForHistory);
     _currentInputForHistory = _currentInput;
+    _currentVisualInput = _currentInput;
     _currentOperator = Operators.empty;
   }
 
