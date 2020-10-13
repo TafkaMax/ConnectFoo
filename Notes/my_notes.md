@@ -36,7 +36,7 @@ DOWNLOAD BUNDLETOOL JAR FILE
 
 ... flutter build appbundle
 
-bundletool build-apks --bundle=app-release.aab --output=~/APKS/APKNAME.apks --ks=~/key.jks --ks-pass=pass:PW --ks-key-alias=key --key-pass=pass:PW 
+bundletool build-apks --bundle=app-release.aab --output=~/APKS/kalkulator.v*.apks --ks=~/key.jks --ks-pass=file:~/keystore.pwd --ks-key-alias=key --key-pass=file:~/key.pwd 
 ...do this in app-release.aab folder
 bundletool install-apks --apks=~/APKS/kalkulator.v2.apks
 ...android phone needs to be connected via usb
