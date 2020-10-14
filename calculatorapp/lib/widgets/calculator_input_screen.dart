@@ -15,12 +15,12 @@ class CalculatorInputScreen extends StatelessWidget {
         margin: EdgeInsets.symmetric(vertical: 5),
         padding: EdgeInsets.all(10),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15),
+          borderRadius: BorderRadius.circular(0),
           border: Border.all(
             width: 3,
-            color: Colors.amberAccent,
+            color: Colors.blueGrey,
           ),
-          color: Colors.amber,
+          color: Colors.grey.withOpacity(0.5),
         ),
         constraints: BoxConstraints(
           minWidth: boxConstraints.maxWidth,

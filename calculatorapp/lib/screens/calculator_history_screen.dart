@@ -21,7 +21,8 @@ class CalculatorHistoryScreen extends StatelessWidget {
         body: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("assets/images/background2.png"),
+              image:
+                  AssetImage("assets/images/grayrandomtrianglesbackground.jpg"),
               fit: BoxFit.cover,
             ),
           ),
@@ -31,11 +32,8 @@ class CalculatorHistoryScreen extends StatelessWidget {
                   itemCount: calculatorHistory.length,
                   itemBuilder: (BuildContext context, int index) {
                     return new ListTile(
-                      leading: Icon(
-                        Icons.history,
-                        size: 35,
-                        color: Colors.amber,
-                      ),
+                      leading:
+                          Icon(Icons.history, size: 35, color: Colors.black38),
                       title: Text(
                         calculatorHistory[index],
                         style: Theme.of(context).textTheme.bodyText1,

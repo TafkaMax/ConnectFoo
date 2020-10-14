@@ -16,17 +16,17 @@ class CalculatorApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: 'Digital7',
         brightness: Brightness.dark,
-        primaryColor: Colors.amber,
-        accentColor: Colors.redAccent,
+        primaryColor: Colors.blueGrey,
+        accentColor: Colors.blueAccent,
         disabledColor: Colors.grey,
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-            primary: Colors.amber,
+            primary: Colors.blueGrey.withOpacity(0.8),
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15),
+              borderRadius: BorderRadius.circular(0),
             ),
             side: BorderSide(
-              color: Colors.amberAccent,
+              color: Colors.black26,
               width: 2,
               style: BorderStyle.solid,
             ),
@@ -39,16 +39,16 @@ class CalculatorApp extends StatelessWidget {
             fontWeight: FontWeight.bold,
             color: Colors.black,
             shadows: [
-              Shadow(
-                color: Colors.blue,
-                offset: Offset.fromDirection(4, 5.0),
-                blurRadius: 5.0,
-              ),
-              Shadow(
-                color: Colors.redAccent,
-                offset: Offset.fromDirection(0, 5.0),
-                blurRadius: 5.0,
-              ),
+              // Shadow(
+              //   color: Colors.blue,
+              //   offset: Offset.fromDirection(4, 5.0),
+              //   blurRadius: 5.0,
+              // ),
+              // Shadow(
+              //   color: Colors.redAccent,
+              //   offset: Offset.fromDirection(0, 5.0),
+              //   blurRadius: 5.0,
+              // ),
             ],
           ),
           headline2: TextStyle(
@@ -56,16 +56,16 @@ class CalculatorApp extends StatelessWidget {
             fontWeight: FontWeight.bold,
             color: Colors.black,
             shadows: [
-              Shadow(
-                color: Colors.blue,
-                offset: Offset.fromDirection(4, 3.0),
-                blurRadius: 3.0,
-              ),
-              Shadow(
-                color: Colors.redAccent,
-                offset: Offset.fromDirection(0, 3.0),
-                blurRadius: 3.0,
-              ),
+              // Shadow(
+              //   color: Colors.blue,
+              //   offset: Offset.fromDirection(4, 3.0),
+              //   blurRadius: 3.0,
+              // ),
+              // Shadow(
+              //   color: Colors.redAccent,
+              //   offset: Offset.fromDirection(0, 3.0),
+              //   blurRadius: 3.0,
+              // ),
             ],
           ),
           bodyText1: TextStyle(
@@ -73,16 +73,16 @@ class CalculatorApp extends StatelessWidget {
             fontWeight: FontWeight.bold,
             color: Colors.black,
             shadows: [
-              Shadow(
-                color: Colors.blue,
-                offset: Offset.fromDirection(4, 3.0),
-                blurRadius: 3.0,
-              ),
-              Shadow(
-                color: Colors.redAccent,
-                offset: Offset.fromDirection(0, 3.0),
-                blurRadius: 3.0,
-              ),
+              // Shadow(
+              //   color: Colors.blue,
+              //   offset: Offset.fromDirection(4, 3.0),
+              //   blurRadius: 3.0,
+              // ),
+              // Shadow(
+              //   color: Colors.redAccent,
+              //   offset: Offset.fromDirection(0, 3.0),
+              //   blurRadius: 3.0,
+              // ),
             ],
           ),
           button: TextStyle(
@@ -90,16 +90,16 @@ class CalculatorApp extends StatelessWidget {
             fontWeight: FontWeight.bold,
             color: Colors.black,
             shadows: [
-              Shadow(
-                color: Colors.blue,
-                offset: Offset.fromDirection(4, 3.0),
-                blurRadius: 3.0,
-              ),
-              Shadow(
-                color: Colors.redAccent,
-                offset: Offset.fromDirection(0, 3.0),
-                blurRadius: 3.0,
-              ),
+              // Shadow(
+              //   color: Colors.blue,
+              //   offset: Offset.fromDirection(4, 3.0),
+              //   blurRadius: 3.0,
+              // ),
+              // Shadow(
+              //   color: Colors.redAccent,
+              //   offset: Offset.fromDirection(0, 3.0),
+              //   blurRadius: 3.0,
+              // ),
             ],
           ),
         ),

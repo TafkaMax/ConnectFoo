@@ -19,12 +19,12 @@ class CalculatorDisplay extends StatelessWidget {
             minHeight: Theme.of(context).textTheme.bodyText1.fontSize + 20,
           ),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
+            borderRadius: BorderRadius.circular(0),
             border: Border.all(
               width: 3,
-              color: Colors.amberAccent,
+              color: Colors.blueGrey,
             ),
-            color: Colors.amber,
+            color: Colors.grey.withOpacity(0.9),
           ),
           child: Wrap(
             alignment: WrapAlignment.end,

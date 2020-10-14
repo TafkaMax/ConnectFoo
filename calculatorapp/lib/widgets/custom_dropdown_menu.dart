@@ -36,7 +36,8 @@ class CustomDropDownMenu extends StatelessWidget {
           );
         }
       },
-      dropdownColor: Colors.amber,
+      dropdownColor: Colors.grey,
+      elevation: 20,
     );
   }
 }

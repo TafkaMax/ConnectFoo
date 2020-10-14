@@ -41,7 +41,8 @@ class CalculatorScreen extends StatelessWidget {
                   child: Container(
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: AssetImage("assets/images/background1.jpg"),
+                        image: AssetImage(
+                            "assets/images/grayrandomtrianglesbackground.jpg"),
                         fit: BoxFit.cover,
                       ),
                     ),

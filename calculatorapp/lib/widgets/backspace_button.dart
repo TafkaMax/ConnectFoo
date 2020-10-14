@@ -9,7 +9,7 @@ class BackSpaceButton extends StatelessWidget {
         child: Icon(
           Icons.backspace_outlined,
           color: Colors.black,
-          size: 30,
+          size: 36,
         ),
         onPressed: () {
           Provider.of<CalculatorInputModel>(context, listen: false).backspace();
