@@ -27,15 +27,19 @@ class CalculatorInput {
 
     //if current operator is empty then just add input to currentinput
     if (input == "0") {
-      if (_currentInput.contains(".") || _currentInput.length == 0) {
+      if (_currentInput.contains(".") || !_currentInput.startsWith("0")) {
         _currentInput += input;
         _currentInputForHistory += input;
         _displayInput.add(input);
       }
     } else {
-      _currentInput += input;
-      _currentInputForHistory += input;
-      _displayInput.add(input);
+      if (_currentOperator == Operators.empty &&
+          _currentInputQueue.isNotEmpty) {
+      } else {
+        _currentInput += input;
+        _currentInputForHistory += input;
+        _displayInput.add(input);
+      }
     }
   }
 
@@ -53,16 +57,34 @@ class CalculatorInput {
           _currentInput.length - 1, _currentInput.length - 0, "");
       _currentInputForHistory = _currentInputForHistory.replaceRange(
           _currentInputForHistory.length - 1,
-          _currentInputForHistory.length - 0,
+          _currentInputForHistory.length,
           "");
-      _displayInput.removeLast();
+      if (_displayInput.isNotEmpty) {
+        _displayInput.removeLast();
+      }
     }
   }
 
   //clears current entry, operator still stays the same
   void clearEntry() {
-    for (var i = 0; i < _currentInput.length; i++) {
-      _displayInput.removeLast();
+    if (_displayInput.isNotEmpty) {
+      for (var i = 0; i < _currentInput.length; i++) {
+        if (_displayInput.isNotEmpty) {
+          _displayInput.removeLast();
+          _currentInputForHistory = _currentInputForHistory.replaceRange(
+              _currentInputForHistory.length - 1,
+              _currentInputForHistory.length,
+              "");
+          if (_currentOperator != Operators.empty && _displayInput.isNotEmpty) {
+            _displayInput.removeLast();
+            _currentOperator = Operators.empty;
+            _currentInputForHistory = _currentInputForHistory.replaceRange(
+                _currentInputForHistory.length - 1,
+                _currentInputForHistory.length,
+                "");
+          }
+        }
+      }
     }
     _currentInput = "";
     _currentOperator = Operators.empty;
@@ -79,7 +101,9 @@ class CalculatorInput {
   }
 
   void addOperator(Operators operators) {
-    _currentInputQueue.add(_currentInput);
+    if (_currentInput != "") {
+      _currentInputQueue.add(_currentInput);
+    }
     addPreviousOperatorToQueue();
     _currentOperator = operators;
     _displayInput.add(getCurrentOperatorString());

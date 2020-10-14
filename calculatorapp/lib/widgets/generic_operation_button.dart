@@ -1,4 +1,3 @@
-import 'package:Kalkulator/enums/operators.dart';
 import 'package:Kalkulator/providers/calculator_input_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
