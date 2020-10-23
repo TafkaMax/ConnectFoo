@@ -1,5 +1,6 @@
 import 'package:amazing_todo_app/screens/login_screen.dart';
 import 'package:amazing_todo_app/screens/main_screen.dart';
+import 'package:amazing_todo_app/screens/todo_category_screen.dart';
 import 'package:flutter/material.dart';
 
 class RouteGenerator {
@@ -15,6 +16,8 @@ class RouteGenerator {
             title: args,
           ),
         );
+      case "/categories":
+        return MaterialPageRoute(builder: (context) => TodoCategoryScreen());
       default:
         return _errorRoute();
     }

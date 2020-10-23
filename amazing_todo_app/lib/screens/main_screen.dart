@@ -1,6 +1,5 @@
-import 'package:amazing_todo_app/providers/auth_model.dart';
+import 'package:amazing_todo_app/widgets/pop_up_menu.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class MainScreen extends StatelessWidget {
   final String title;
@@ -11,22 +10,28 @@ class MainScreen extends StatelessWidget {
     return Container(
       child: Scaffold(
         appBar: AppBar(
-          title: Text(title),
+          automaticallyImplyLeading: false,
+          title: Text(
+            title,
+            style: Theme.of(context).appBarTheme.textTheme.headline1,
+          ),
+          actions: [buildPopUpMenu(context)],
         ),
         body: Column(
           children: [
-            TextButton(
-              onPressed: () => logOut(context),
-              child: Text('Logout'),
-            ),
+            _buildTodoCategories(context),
           ],
         ),
       ),
     );
   }
 
-  logOut(context) {
-    Provider.of<AuthModel>(context, listen: false).resetToken();
-    Navigator.pop(context);
+  Widget _buildTodoCategories(context) {
+    return ElevatedButton(
+      onPressed: () {
+        Navigator.pushNamed(context, "/categories");
+      },
+      child: Text("Go to categories"),
+    );
   }
 }

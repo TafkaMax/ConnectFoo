@@ -1,36 +1,19 @@
+import 'package:amazing_todo_app/providers/theme_data_provider.dart';
 import 'package:amazing_todo_app/route_generator.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class AmazingTodoMaterialApp extends StatelessWidget {
+  static const mainColor = const Color(0xffB8A081);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Amazing Todo',
       initialRoute: '/',
       onGenerateRoute: RouteGenerator.generateRoute,
-      theme: ThemeData(
-        fontFamily: 'Assistant',
-        brightness: Brightness.dark,
-        primaryColor: Colors.white,
-        accentColor: Colors.white10,
-        disabledColor: Colors.grey,
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(
-            primary: Colors.white24,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(5),
-            ),
-            side: BorderSide(
-              color: Colors.black26,
-              width: 2,
-              style: BorderStyle.solid,
-            ),
-            padding: EdgeInsets.symmetric(vertical: 9),
-          ),
-        ),
-        // textTheme: TextTheme(),
-        // textButtonTheme: TextButtonThemeData(),
-      ),
+      theme: Provider.of<ThemeDataProvider>(context).themeData,
     );
   }
 }
+
+//Icons made by <a href="https://icon54.com/" title="Pixel perfect">Pixel perfect</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
