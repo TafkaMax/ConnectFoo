@@ -189,7 +189,12 @@ class _LoginScreenState extends State<LoginScreen> {
           );
         } else {
           WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-            Navigator.pushNamed(context, '/main', arguments: "Amazing Todo");
+            Navigator.pushNamed(context, '/main', arguments: "Amazing Todo")
+                .then(
+              (value) => Provider.of<AuthModel>(context, listen: false)
+                  .returnToPreviousPage(),
+            );
+            ;
           });
           return Text('Logged in successfully');
         }

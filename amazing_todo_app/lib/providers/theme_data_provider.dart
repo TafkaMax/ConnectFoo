@@ -44,9 +44,19 @@ class ThemeDataProvider with ChangeNotifier {
   ThemeData appThemeDark = ThemeData(
     fontFamily: 'Assistant',
     brightness: Brightness.dark,
+    primaryColorDark: Colors.brown,
+    primaryColorLight: mainColor,
     primaryColor: Colors.brown,
     accentColor: mainColor,
     disabledColor: Colors.grey,
+    primaryIconTheme: IconThemeData(
+      color: Colors.brown,
+    ),
+    primaryTextTheme: TextTheme(
+      bodyText1: TextStyle(
+        color: mainColor,
+      ),
+    ),
     appBarTheme: AppBarTheme(
       textTheme: TextTheme(
         headline1: TextStyle(
@@ -62,10 +72,32 @@ class ThemeDataProvider with ChangeNotifier {
       ),
       actionsIconTheme: IconThemeData(),
     ),
-    textTheme: TextTheme(
-      bodyText2: TextStyle(
+    snackBarTheme: SnackBarThemeData(
+      backgroundColor: Colors.brown,
+      actionTextColor: mainColor,
+      contentTextStyle: TextStyle(
         color: mainColor,
       ),
+      behavior: SnackBarBehavior.floating,
+    ),
+    textTheme: TextTheme(
+      bodyText1: TextStyle(
+        fontSize: 30,
+        color: mainColor,
+      ),
+      bodyText2: TextStyle(
+        fontSize: 20,
+        color: mainColor,
+      ),
+      headline6: TextStyle(
+        fontSize: 20,
+        color: Colors.brown,
+      ),
+      headline5: TextStyle(
+          //This is style for a "completed" task
+          fontSize: 20,
+          color: Colors.grey,
+          decoration: TextDecoration.lineThrough),
     ),
     popupMenuTheme: PopupMenuThemeData(
       elevation: 3.0,
@@ -110,30 +142,39 @@ class ThemeDataProvider with ChangeNotifier {
       ),
     ),
     inputDecorationTheme: InputDecorationTheme(
-        fillColor: mainColor,
-        focusColor: mainColor,
-        labelStyle: TextStyle(
-          fontWeight: FontWeight.bold,
+      fillColor: mainColor,
+      focusColor: mainColor,
+      labelStyle: TextStyle(
+        fontWeight: FontWeight.bold,
+        color: mainColor,
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderSide: BorderSide(
+          color: mainColor,
+          width: 1,
+        ),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(
+          width: 3,
           color: mainColor,
         ),
-        enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            color: mainColor,
-            width: 1,
-          ),
+      ),
+      disabledBorder: OutlineInputBorder(
+        borderSide: BorderSide(
+          width: 2,
+          color: Colors.red,
         ),
-        focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            width: 3,
-            color: mainColor,
-          ),
-        ),
-        disabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            width: 2,
-            color: Colors.red,
-          ),
-        )),
+      ),
+    ),
+    floatingActionButtonTheme: FloatingActionButtonThemeData(
+      backgroundColor: Colors.brown,
+      foregroundColor: mainColor,
+    ),
+    iconTheme: IconThemeData(
+      color: mainColor,
+    ),
+
     // textTheme: TextTheme(),
     // textButtonTheme: TextButtonThemeData(),
   );
@@ -141,9 +182,19 @@ class ThemeDataProvider with ChangeNotifier {
   ThemeData appThemeLight = ThemeData(
     fontFamily: 'Assistant',
     brightness: Brightness.light,
+    primaryColorDark: Colors.brown,
+    primaryColorLight: mainColor,
+    primaryTextTheme: TextTheme(
+      bodyText1: TextStyle(
+        color: Colors.brown,
+      ),
+    ),
     primaryColor: mainColor,
-    accentColor: mainColor,
+    accentColor: Colors.brown,
     disabledColor: Colors.grey,
+    primaryIconTheme: IconThemeData(
+      color: mainColor,
+    ),
     appBarTheme: AppBarTheme(
       textTheme: TextTheme(
         headline1: TextStyle(
@@ -161,6 +212,13 @@ class ThemeDataProvider with ChangeNotifier {
         size: 35,
       ),
       actionsIconTheme: IconThemeData(),
+    ),
+    snackBarTheme: SnackBarThemeData(
+      backgroundColor: Colors.white,
+      contentTextStyle: TextStyle(
+        color: mainColor,
+      ),
+      behavior: SnackBarBehavior.floating,
     ),
     popupMenuTheme: PopupMenuThemeData(
       elevation: 3.0,
@@ -230,7 +288,33 @@ class ThemeDataProvider with ChangeNotifier {
             color: Colors.red,
           ),
         )),
-    // textTheme: TextTheme(),
+    textTheme: TextTheme(
+      bodyText1: TextStyle(
+        fontSize: 30,
+        color: mainColor,
+      ),
+      bodyText2: TextStyle(
+        fontSize: 20,
+        color: mainColor,
+      ),
+      headline6: TextStyle(
+        fontSize: 20,
+        color: Colors.brown,
+      ),
+      headline5: TextStyle(
+        //This is style for a "completed" task
+        fontSize: 20,
+        color: Colors.grey,
+        decoration: TextDecoration.lineThrough,
+      ),
+    ),
+    floatingActionButtonTheme: FloatingActionButtonThemeData(
+      backgroundColor: mainColor,
+      foregroundColor: Colors.brown,
+    ),
+    iconTheme: IconThemeData(
+      color: mainColor,
+    ),
     // textButtonTheme: TextButtonThemeData(),
   );
 }

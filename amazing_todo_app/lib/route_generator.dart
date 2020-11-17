@@ -1,6 +1,8 @@
 import 'package:amazing_todo_app/screens/login_screen.dart';
 import 'package:amazing_todo_app/screens/main_screen.dart';
 import 'package:amazing_todo_app/screens/todo_category_screen.dart';
+import 'package:amazing_todo_app/screens/todo_priority_create_screen.dart';
+import 'package:amazing_todo_app/screens/todo_task_create_screen.dart';
 import 'package:flutter/material.dart';
 
 class RouteGenerator {
@@ -18,6 +20,11 @@ class RouteGenerator {
         );
       case "/categories":
         return MaterialPageRoute(builder: (context) => TodoCategoryScreen());
+      case "/todo":
+        return MaterialPageRoute(builder: (context) => TodoTaskCreateScreen());
+      case "/priorities":
+        return MaterialPageRoute(
+            builder: (context) => TodoPriorityCreateScreen());
       default:
         return _errorRoute();
     }

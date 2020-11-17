@@ -12,6 +12,10 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 class AuthModel with ChangeNotifier {
   String _tokenkey = "";
 
+  void _setTokenKey(String key) {
+    _tokenkey = key;
+  }
+
   String get tokenKey => _tokenkey;
 
   final storage = new FlutterSecureStorage();
@@ -21,6 +25,11 @@ class AuthModel with ChangeNotifier {
   void _setState(NotifierState state) {
     _state = state;
     notifyListeners();
+  }
+
+  void returnToPreviousPage() {
+    _setCustomException(null);
+    _setState(NotifierState.initial);
   }
 
   CustomException _exception;
@@ -51,10 +60,10 @@ class AuthModel with ChangeNotifier {
           jsonEncode(body));
 
       JWT jwt = JWT.fromJson(jsonDecode(response));
-      print(jwt.status);
-      print(jwt.token);
+      // print(jwt.status);
+      // print(jwt.token);
       _setToken(jwt, key);
-      _tokenkey = key;
+      _setTokenKey(key);
     } on CustomException catch (f) {
       _setCustomException(f);
     }
@@ -64,6 +73,7 @@ class AuthModel with ChangeNotifier {
   // delete current token, key is email address
   void deleteToken() async {
     await storage.delete(key: _tokenkey);
+    _setTokenKey("");
     _setState(NotifierState.initial);
   }
 
@@ -75,9 +85,9 @@ class AuthModel with ChangeNotifier {
 
   //gets current JWT token using logged in email
   Future<String> getToken() async {
-    String key = await storage.read(key: _tokenkey);
-    print(key);
-    return key;
+    String token = await storage.read(key: _tokenkey);
+    // print(key);
+    return token;
     // return await storage.read(key: _tokenkey);
   }
 

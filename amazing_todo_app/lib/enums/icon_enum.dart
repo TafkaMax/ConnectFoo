@@ -1,0 +1,1 @@
+enum IconStateEnum { Archive, Complete }

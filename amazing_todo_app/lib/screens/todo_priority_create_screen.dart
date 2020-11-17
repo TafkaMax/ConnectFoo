@@ -1,67 +1,54 @@
 import 'package:amazing_todo_app/enums/notifier_state.dart';
+import 'package:amazing_todo_app/enums/priority_enum.dart';
 import 'package:amazing_todo_app/enums/snack_bar_options.dart';
 import 'package:amazing_todo_app/providers/auth_model.dart';
-import 'package:amazing_todo_app/providers/todo_category_provider.dart';
-import 'package:amazing_todo_app/services/todo_category_service.dart';
+import 'package:amazing_todo_app/providers/todo_priority_provider.dart';
 import 'package:amazing_todo_app/widgets/pop_up_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
-class TodoCategoryScreen extends StatefulWidget {
+class TodoPriorityCreateScreen extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => _TodoCategoryScreenState();
+  State<StatefulWidget> createState() => _TodoPriorityCreateScreen();
 }
 
-class _TodoCategoryScreenState extends State<TodoCategoryScreen> {
+class _TodoPriorityCreateScreen extends State<TodoPriorityCreateScreen> {
   static const mainColor = const Color(0xffB8A081);
-  final textControllerCategoryName = TextEditingController();
-  final textControllerCategorySort = TextEditingController();
-
-  TodoCategoryServiceMapper todoCategoriesService =
-      TodoCategoryServiceMapper('/TodoCategories');
+  final textControllerPriorityName = TextEditingController();
 
   //properties
-  String _categoryName = "";
-  String _categorySort = "";
+  String _priorityName = "";
+  String _priorityString = priorityString(PriorityEnum.NotUrgent);
 
   //Constructor
-  _TodoCategoryScreenState() {
-    textControllerCategoryName.addListener(_categoryNameListener);
-    textControllerCategorySort.addListener(_categorySortListener);
+  _TodoPriorityCreateScreen() {
+    textControllerPriorityName.addListener(_priorityNameListener);
   }
 
   //listeners for textcontrollers
-  void _categoryNameListener() {
-    if (textControllerCategoryName.text.isEmpty) {
-      _categoryName = "";
+  void _priorityNameListener() {
+    if (textControllerPriorityName.text.isEmpty) {
+      _priorityName = "";
     } else {
-      _categoryName = textControllerCategoryName.text;
-    }
-  }
-
-  void _categorySortListener() {
-    if (textControllerCategorySort.text.isEmpty) {
-      _categorySort = "";
-    } else {
-      _categorySort = textControllerCategorySort.text;
+      _priorityName = textControllerPriorityName.text;
     }
   }
 
   @override
   void dispose() {
-    textControllerCategoryName.dispose();
-    textControllerCategorySort.dispose();
+    textControllerPriorityName.dispose();
+
     super.dispose();
   }
 
   void _buttonAddObjectPressed() async {
     Provider.of<AuthModel>(context, listen: false).getToken().then(
-          (jwt) => Provider.of<TodoCategoryProvider>(context, listen: false)
-              .addTodoCategory(
+          (jwt) => Provider.of<TodoPriorityProvider>(context, listen: false)
+              .addTodoPriority(
             jwt,
-            _categoryName,
-            int.parse(_categorySort),
+            _priorityName,
+            priorityEnumFromString(_priorityString).index,
           ),
         );
   }
@@ -69,10 +56,10 @@ class _TodoCategoryScreenState extends State<TodoCategoryScreen> {
   void _buttonDeleteObjectPressed(int id) async {
     String jwt =
         await Provider.of<AuthModel>(context, listen: false).getToken();
-    Provider.of<TodoCategoryProvider>(context, listen: false)
-        .deleteTodoCateogry(jwt, id);
-    Provider.of<TodoCategoryProvider>(context, listen: false)
-        .getTodoCategories(jwt);
+    Provider.of<TodoPriorityProvider>(context, listen: false)
+        .deleteTodoPriority(jwt, id);
+    Provider.of<TodoPriorityProvider>(context, listen: false)
+        .getTodoPriorities(jwt);
   }
 
   @override
@@ -85,7 +72,7 @@ class _TodoCategoryScreenState extends State<TodoCategoryScreen> {
             _buildTextFields(),
             _buildValidationField(),
             _buildButtons(),
-            _buildCategoryList(),
+            _buildPriorityList(),
           ],
         ),
       ),
@@ -104,21 +91,29 @@ class _TodoCategoryScreenState extends State<TodoCategoryScreen> {
           Container(
             margin: EdgeInsets.all(15),
             child: TextFormField(
-              controller: textControllerCategoryName,
+              controller: textControllerPriorityName,
               decoration: InputDecoration(
-                labelText: "Category name",
+                labelText: "Priority name",
               ),
             ),
           ),
+          Divider(
+            height: 1,
+            thickness: 1,
+          ),
           Container(
-            margin: EdgeInsets.all(15),
-            child: TextFormField(
-              controller: textControllerCategorySort,
-              decoration: InputDecoration(
-                labelText: "Sort priority",
-              ),
-              obscureText: true,
+            padding: EdgeInsets.symmetric(vertical: 8),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Text("Select priority for priority"),
+                _buildPriorityDropDown(),
+              ],
             ),
+          ),
+          Divider(
+            height: 1,
+            thickness: 1,
           ),
         ],
       ),
@@ -131,7 +126,7 @@ class _TodoCategoryScreenState extends State<TodoCategoryScreen> {
         children: [
           ElevatedButton(
             onPressed: _buttonAddObjectPressed,
-            child: Text("Add new category"),
+            child: Text("Add new priority"),
           ),
         ],
       ),
@@ -151,7 +146,7 @@ class _TodoCategoryScreenState extends State<TodoCategoryScreen> {
             ),
           ),
           Text(
-            "Add todo category",
+            "Add todo priority",
             style: Theme.of(context).appBarTheme.textTheme.headline1,
           ),
         ],
@@ -161,45 +156,45 @@ class _TodoCategoryScreenState extends State<TodoCategoryScreen> {
   }
 
   Widget _buildValidationField() {
-    return Consumer<TodoCategoryProvider>(
-        builder: (context, todocategorymodel, child) {
-      if (todocategorymodel.state == NotifierState.initial) {
+    return Consumer<TodoPriorityProvider>(
+        builder: (context, todoprioritymodel, child) {
+      if (todoprioritymodel.state == NotifierState.initial) {
         return Container();
-      } else if (todocategorymodel.state == NotifierState.loading) {
+      } else if (todoprioritymodel.state == NotifierState.loading) {
         return CircularProgressIndicator();
       } else {
-        if (todocategorymodel.exception != null) {
+        if (todoprioritymodel.exception != null) {
           return Text(
-            todocategorymodel.exception.toString(),
+            todoprioritymodel.exception.toString(),
             style: Theme.of(context).textTheme.bodyText2,
             textAlign: TextAlign.center,
           );
         } else {
-          return Text('Category added successfully');
+          return Text('Priority added successfully');
         }
       }
     });
   }
 
-  Widget _buildCategoryList() {
+  Widget _buildPriorityList() {
     Provider.of<AuthModel>(context, listen: false).getToken().then(
-          (jwt) => Provider.of<TodoCategoryProvider>(context, listen: false)
-              .getTodoCategories(
+          (jwt) => Provider.of<TodoPriorityProvider>(context, listen: false)
+              .getTodoPriorities(
             jwt,
           ),
         );
     return Expanded(
-      child: Consumer<TodoCategoryProvider>(
-          builder: (context, todocategorymodel, child) {
-        if (todocategorymodel.todoCategories.isNotEmpty) {
+      child: Consumer<TodoPriorityProvider>(
+          builder: (context, todoprioritymodel, child) {
+        if (todoprioritymodel.todoPriorities.isNotEmpty) {
           return ListView.separated(
-            itemCount: todocategorymodel.todoCategories.length,
+            itemCount: todoprioritymodel.todoPriorities.length,
             itemBuilder: (BuildContext context, int index) {
               return Slidable(
                 actionPane: SlidableBehindActionPane(),
                 child: ListTile(
                   title: Text(
-                    todocategorymodel.todoCategories[index].todoCategoryName,
+                    todoprioritymodel.todoPriorities[index].todoPriorityName,
                     style: Theme.of(context).textTheme.bodyText1,
                   ),
                 ),
@@ -210,7 +205,7 @@ class _TodoCategoryScreenState extends State<TodoCategoryScreen> {
                     color: Colors.red,
                     icon: Icons.delete,
                     onTap: () => _showSnackBar(context, SnackBarOptions.Delete,
-                        todocategorymodel.todoCategories[index].id),
+                        todoprioritymodel.todoPriorities[index].id),
                   ),
                 ],
               );
@@ -248,15 +243,23 @@ class _TodoCategoryScreenState extends State<TodoCategoryScreen> {
     );
   }
 
-  // deleteButtonTheme() {
-  //   return ButtonStyle(
-  //     backgroundColor:
-  //   );
-  // }
-
-  // cancelButtonTheme() {
-  //   return ButtonStyle(
-  //     backgroundColor:
-  //   );
-  // }
+  Widget _buildPriorityDropDown() {
+    return DropdownButton(
+        value: _priorityString,
+        items: PriorityEnum.values
+            .map((priority) => DropdownMenuItem(
+                  child: Text(
+                    priorityString(priority),
+                    style: Theme.of(context).textTheme.bodyText2,
+                  ),
+                  value: priorityString(priority),
+                ))
+            .toList(),
+        onChanged: (priority) {
+          setState(() {
+            print(priority);
+            _priorityString = priority;
+          });
+        });
+  }
 }

@@ -12,7 +12,7 @@ class TodoCategory {
       id: json['id'],
       todoCategoryName: json['todoCategoryName'],
       todoCategorySort: json['todoCategorySort'],
-      syncDT: json['syncDT'],
+      syncDT: DateTime.parse(json['syncDT']),
     );
   }
 

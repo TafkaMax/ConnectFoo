@@ -18,14 +18,9 @@ class APIManager {
 
     var responseJson;
 
-    final response = await http.post(url, headers: _headers, body: body);
-    print(response.body);
     try {
-      print('before response');
       final response = await http.post(url, headers: _headers, body: body);
-      print('after response');
-      print(response.statusCode);
-      print(response.body);
+
       responseJson = _response(response);
     } on SocketException {
       throw FetchDataException('No Internet connection');
@@ -41,6 +36,9 @@ class APIManager {
         var responseJson = response.body;
         return responseJson;
       case 201:
+        var responseJson = response.body;
+        return responseJson;
+      case 204:
         var responseJson = response.body;
         return responseJson;
       case 400:
@@ -70,13 +68,42 @@ class APIManager {
     _headers.addAll(headers);
 
     try {
-      print(_headers);
+      // print(_headers);
       final response = await http.get(url, headers: _headers);
+      // print(response.body);
       responseJson = _response(response);
     } on SocketException {
       throw FetchDataException('No Internet connection');
     }
 
+    return responseJson;
+  }
+
+  Future<dynamic> deleteApiCall(String url, Map headers) async {
+    var responseJson;
+
+    try {
+      final response = await http.delete(url, headers: headers);
+      responseJson = _response(response);
+    } on SocketException {
+      throw FetchDataException('No Internet connection');
+    }
+
+    return responseJson;
+  }
+
+  putApiCall(String url, Map<String, String> headers, String body) async {
+    var responseJson;
+
+    try {
+      final response = await http.put(url, headers: headers, body: body);
+
+      responseJson = _response(response);
+    } on SocketException {
+      throw FetchDataException('No Internet connection');
+    }
+
+    // this needs to be decoded.
     return responseJson;
   }
 }

@@ -1,5 +1,9 @@
+import 'package:amazing_todo_app/providers/todo_task_provider.dart';
+import 'package:amazing_todo_app/states/custom_fab.dart';
 import 'package:amazing_todo_app/widgets/pop_up_menu.dart';
+import 'package:amazing_todo_app/widgets/todo_task_list.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class MainScreen extends StatelessWidget {
   final String title;
@@ -19,19 +23,32 @@ class MainScreen extends StatelessWidget {
         ),
         body: Column(
           children: [
-            _buildTodoCategories(context),
+            Expanded(child: TodoTaskList()),
           ],
         ),
+        floatingActionButton: CustomFab(),
       ),
     );
   }
 
-  Widget _buildTodoCategories(context) {
-    return ElevatedButton(
-      onPressed: () {
-        Navigator.pushNamed(context, "/categories");
-      },
-      child: Text("Go to categories"),
-    );
-  }
+  // Widget _buildTodoCategories(context) {
+  //   return ElevatedButton(
+  //     onPressed: () {
+  //       Navigator.pushNamed(context, "/categories").then(
+  //         (value) => Provider.of<TodoTaskProvider>(context, listen: false)
+  //             .returnToPreviousPage(),
+  //       );
+  //     },
+  //     child: Text("Go to categories"),
+  //   );
+  // }
+
+  // Widget _buildFloatingActionButton(BuildContext context) {
+  //   return FloatingActionButton(
+  //     onPressed: () {
+  //       //Add create - opens a window
+  //     },
+  //     child: Icon(Icons.create),
+  //   );
+  // }
 }

@@ -2,6 +2,8 @@ import 'package:amazing_todo_app/material_app.dart';
 import 'package:amazing_todo_app/providers/auth_model.dart';
 import 'package:amazing_todo_app/providers/theme_data_provider.dart';
 import 'package:amazing_todo_app/providers/todo_category_provider.dart';
+import 'package:amazing_todo_app/providers/todo_priority_provider.dart';
+import 'package:amazing_todo_app/providers/todo_task_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -22,7 +24,13 @@ class AmazingTodoApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (_) => TodoCategoryProvider(),
-        )
+        ),
+        ChangeNotifierProvider(
+          create: (_) => TodoTaskProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => TodoPriorityProvider(),
+        ),
       ],
       child: AmazingTodoMaterialApp(),
     );

@@ -59,5 +59,8 @@ Icon getIconForSetting(Settings setting) {
 
 logOut(context) {
   Provider.of<AuthModel>(context, listen: false).deleteToken();
-  Navigator.pop(context);
+  // Navigator.popUntil(context, ModalRoute.withName(Navigator.defaultRouteName));
+  // Navigator.pop(context);
+  // Navigator.popAndPushNamed(context, '/');
+  Navigator.popUntil(context, (route) => route.isFirst);
 }
