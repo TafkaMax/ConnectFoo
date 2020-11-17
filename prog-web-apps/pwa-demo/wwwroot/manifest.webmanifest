@@ -1,0 +1,19 @@
+{
+    "name": "Progressive Web App",
+    "description": "PWA Demo1",
+    "short_name": "PWAD",
+    "start_url": "/",
+    "scope": "/",
+    "display": "standalone",
+    "background_color": "#F00",
+    "theme_color": "#0F0",
+    "orientation": "any",
+    "icons": [
+        {
+            "src":"/img/icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+
+}

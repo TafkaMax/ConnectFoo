@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "module": "esnext",
+        "target": "es2017",
+        "strict": true,
+        "moduleResolution": "node",
+        "experimentalDecorators": true,
+        "esModuleInterop": true,
+        "sourceMap": true,
+        "lib": [
+            "DOM",
+            "ESNext",
+            "WebWorker",
+        ],
+    },
+    "include": [
+        "global.d.ts", "./src/**/*"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}
