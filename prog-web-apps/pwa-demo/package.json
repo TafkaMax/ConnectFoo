@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"My code is perfi\" && exit 0",
-    "build": "webpack --mode production",
-    "start": "webpack"
+    "build": "tsc --project ./src/sw/tsconfig.json --outDir ./dist && webpack --mode production",
+    "start": "tsc --project ./src/sw/tsconfig.json --outDir ./dist && webpack"
   },
   "author": "",
   "license": "ISC",

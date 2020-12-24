@@ -1,12 +1,12 @@
-self.addEventListener('install', function(event) {
+self.addEventListener('install', function(event: Event) {
     console.log('Sw event', event); 
 });
 
-self.addEventListener('activate', function (event) {
+self.addEventListener('activate', function (event: Event) {
     console.log('SW activate', event);
 });
 
-self.addEventListener('fetch', function(event) {
+self.addEventListener('fetch', function(event: Event) {
     console.log('SW fetch', event);
     event.respondWith(
         fetch(event.request).then(response => {

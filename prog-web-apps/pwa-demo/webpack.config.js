@@ -13,12 +13,14 @@ const options = {
 
 module.exports = {
     mode: 'development',
-    entry: [
-        './src/index.ts',
-        'webpack-plugin-serve/client'
-    ],
+    entry: {
+        'app': [
+            './src/index.ts',
+            'webpack-plugin-serve/client'
+        ]
+    },
     output: {
-        filename: 'app.js',
+        filename: '[name].js',
         path: path.resolve(__dirname, 'dist'),
     },
     resolve: {

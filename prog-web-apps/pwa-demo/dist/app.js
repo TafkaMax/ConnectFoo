@@ -30,7 +30,7 @@ eval("\n\n\n//# sourceURL=webpack://pwa-demo/./src/index.ts?");
 /*! runtime requirements: __webpack_require__, __webpack_require__.h, __webpack_require__.* */
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("/*\n  Copyright © 2018 Andrew Powell\n\n  This Source Code Form is subject to the terms of the Mozilla Public\n  License, v. 2.0. If a copy of the MPL was not distributed with this\n  file, You can obtain one at http://mozilla.org/MPL/2.0/.\n\n  The above copyright notice and this permission notice shall be\n  included in all copies or substantial portions of this Source Code Form.\n*/\n\n/**\n * @note This file exists merely as an easy reference for folks adding it to their configuration entries\n */\n\n(() => {\n  /* eslint-disable global-require */\n  const { run } = __webpack_require__(/*! ./lib/client/client */ \"./node_modules/webpack-plugin-serve/lib/client/client.js\");\n  let hash = '<unknown>';\n  let options;\n  try {\n    options = {\"compress\":{},\"headers\":null,\"historyFallback\":false,\"hmr\":true,\"host\":null,\"liveReload\":false,\"log\":{\"level\":\"info\",\"prefix\":{\"template\":\"{{level}}\"},\"name\":\"webpack-plugin-serve\"},\"open\":false,\"port\":8080,\"progress\":true,\"ramdisk\":false,\"secure\":false,\"static\":[\"./dist\",\"./wwwroot\"],\"status\":true,\"client\":{\"silent\":false},\"address\":\"[::]:8080\",\"compilerName\":null,\"wpsId\":\"4d968f5\"};\n  } catch (e) {\n    const { log } = __webpack_require__(/*! ./lib/client/log */ \"./node_modules/webpack-plugin-serve/lib/client/log.js\");\n    log.error(\n      'The entry for webpack-plugin-serve was included in your build, but it does not appear that the plugin was. Please check your configuration.'\n    );\n  }\n\n  try {\n    // eslint-disable-next-line camelcase\n    hash = __webpack_require__.h();\n  } catch (e) {} // eslint-disable-line no-empty\n\n  run(hash, options);\n})();\n\n\n//# sourceURL=webpack://pwa-demo/./node_modules/webpack-plugin-serve/client.js?");
+eval("/*\n  Copyright © 2018 Andrew Powell\n\n  This Source Code Form is subject to the terms of the Mozilla Public\n  License, v. 2.0. If a copy of the MPL was not distributed with this\n  file, You can obtain one at http://mozilla.org/MPL/2.0/.\n\n  The above copyright notice and this permission notice shall be\n  included in all copies or substantial portions of this Source Code Form.\n*/\n\n/**\n * @note This file exists merely as an easy reference for folks adding it to their configuration entries\n */\n\n(() => {\n  /* eslint-disable global-require */\n  const { run } = __webpack_require__(/*! ./lib/client/client */ \"./node_modules/webpack-plugin-serve/lib/client/client.js\");\n  let hash = '<unknown>';\n  let options;\n  try {\n    options = {\"compress\":{},\"headers\":null,\"historyFallback\":false,\"hmr\":true,\"host\":null,\"liveReload\":false,\"log\":{\"level\":\"info\",\"prefix\":{\"template\":\"{{level}}\"},\"name\":\"webpack-plugin-serve\"},\"open\":false,\"port\":8080,\"progress\":true,\"ramdisk\":false,\"secure\":false,\"static\":[\"./dist\",\"./wwwroot\"],\"status\":true,\"client\":{\"silent\":false},\"address\":\"[::]:8080\",\"compilerName\":null,\"wpsId\":\"3baed9d\"};\n  } catch (e) {\n    const { log } = __webpack_require__(/*! ./lib/client/log */ \"./node_modules/webpack-plugin-serve/lib/client/log.js\");\n    log.error(\n      'The entry for webpack-plugin-serve was included in your build, but it does not appear that the plugin was. Please check your configuration.'\n    );\n  }\n\n  try {\n    // eslint-disable-next-line camelcase\n    hash = __webpack_require__.h();\n  } catch (e) {} // eslint-disable-line no-empty\n\n  run(hash, options);\n})();\n\n\n//# sourceURL=webpack://pwa-demo/./node_modules/webpack-plugin-serve/client.js?");
 
 /***/ }),
 
@@ -181,18 +181,18 @@ eval("/*\n  Copyright © 2018 Andrew Powell\n\n  This Source Code Form is subjec
 /******/ 		// This function allow to reference all chunks
 /******/ 		__webpack_require__.hu = (chunkId) => {
 /******/ 			// return url for filenames based on template
-/******/ 			return "4d968f5-" + chunkId + "-wps-hmr.js";
+/******/ 			return "3baed9d-" + chunkId + "-wps-hmr.js";
 /******/ 		};
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/get update manifest filename */
 /******/ 	(() => {
-/******/ 		__webpack_require__.hmrF = () => "4d968f5-wps-hmr.json";
+/******/ 		__webpack_require__.hmrF = () => "3baed9d-wps-hmr.json";
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => "485d58eb1e3d17108e22"
+/******/ 		__webpack_require__.h = () => "e699102e270b6f0129b4"
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */
